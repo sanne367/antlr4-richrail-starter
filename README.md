@@ -27,7 +27,7 @@ the relevant methods.
 # What is going on?
 ANTLR4 generates Parser, Visitor and Listener
 classes based on the `RichRail.g4` grammar
-found in `src/main/antlr4/parser`.
+found in `src/main/antlr4/businesslogic.parser`.
 These classes contain context and methods needed
 for visiting the nodes in the parse tree or
 for listening to events when entering or exiting
@@ -46,9 +46,9 @@ maven commands defined in the `pom.xml`.
 
 The generated classes are output to 
 the `target/generated-sources/antlr4` directory
-and reside in the project's `parser` package.
+and reside in the project's `businesslogic.parser` package.
 This is due to the standard configuration of ANTLR4,
-matching the location of the grammar file (`src/antlr4/parser`).
+matching the location of the grammar file (`src/antlr4/businesslogic.parser`).
 No further configuration required.
 
 # Author
