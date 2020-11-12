@@ -8,4 +8,6 @@ public interface DaoProvider {
 
     ComponentTypeDao getComponentTypeDao();
 
+    TrainComponentDao getTrainComponentDao();
+
 }

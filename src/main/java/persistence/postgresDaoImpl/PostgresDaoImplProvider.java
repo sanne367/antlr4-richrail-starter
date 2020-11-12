@@ -1,10 +1,7 @@
 package persistence.postgresDaoImpl;
 
 import persistence.HibernateUtil;
-import persistence.dao.ComponentDao;
-import persistence.dao.ComponentTypeDao;
-import persistence.dao.DaoProvider;
-import persistence.dao.TrainDao;
+import persistence.dao.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,6 +11,7 @@ public class PostgresDaoImplProvider extends HibernateUtil implements DaoProvide
     private TrainDao trainDao;
     private ComponentTypeDao componentTypeDao;
     private ComponentDao componentDao;
+    private TrainComponentDao trainComponentDao;
 
     public PostgresDaoImplProvider(){
         EntityManager entityManager = null;
@@ -23,6 +21,7 @@ public class PostgresDaoImplProvider extends HibernateUtil implements DaoProvide
             trainDao = new TrainPostgresDaoImpl(entityManager);
             componentDao = new ComponentPostgresDaoImpl(entityManager);
             componentTypeDao = new ComponentTypePostgresDaoImpl(entityManager);
+            trainComponentDao = new TrainComponentPostgresDaoImpl(entityManager);
         }catch (Throwable ex){
             System.err.println("Failed to create entitymanager object." + ex);
             throw new ExceptionInInitializerError(ex);
@@ -41,5 +40,10 @@ public class PostgresDaoImplProvider extends HibernateUtil implements DaoProvide
     @Override
     public ComponentTypeDao getComponentTypeDao() {
         return componentTypeDao;
+    }
+
+    @Override
+    public TrainComponentDao getTrainComponentDao() {
+        return trainComponentDao;
     }
 }

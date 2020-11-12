@@ -9,21 +9,22 @@ import businesslogic.parser.*;
 
 public class Main {
     public static void main(String[] args) {
-        CharStream lineStream = CharStreams.fromString("new train tr1");
-
-        // Tokenize / Lexical analysis
-        Lexer lexer = new RichRailLexer(lineStream);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-        // Create Parse Tree
-        RichRailParser parser = new RichRailParser(tokens);
-        ParseTree tree = parser.command();
-
-        // Create ParseTreeWalker and Custom Listener
-        ParseTreeWalker walker = new ParseTreeWalker();
-        RichRailListener listener = new RichRailCli();
-
-        // Walk over ParseTree using Custom Listener that listens to enter/exit events
-        walker.walk(listener, tree);
+//        CharStream lineStream = CharStreams.fromString("new train tr1");
+//
+//        // Tokenize / Lexical analysis
+//        Lexer lexer = new RichRailLexer(lineStream);
+//        CommonTokenStream tokens = new CommonTokenStream(lexer);
+//
+//        // Create Parse Tree
+//        RichRailParser parser = new RichRailParser(tokens);
+//        ParseTree tree = parser.command();
+//
+//        // Create ParseTreeWalker and Custom Listener
+//        ParseTreeWalker walker = new ParseTreeWalker();
+//        RichRailListener listener = new RichRailCli();
+//
+//        // Walk over ParseTree using Custom Listener that listens to enter/exit events
+//        walker.walk(listener, tree);
+        
     }
 }
