@@ -27,4 +27,8 @@ public class TrainService {
     public Train getTrainById(int id){
         return traindao.findById(id);
     }
+
+    public List<Train> getTrainByName(String name){
+        return traindao.getTrainByName(name);
+    }
 }

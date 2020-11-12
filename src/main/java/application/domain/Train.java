@@ -22,10 +22,20 @@ public class Train implements Buildable{
 
     )
     List<TrainComponent> trainComponents;
+    public Train(String name){
+        this.name = name;
+    }
+
+    public Train(){};
 
     public Train(String name, List<TrainComponent> allTrainComponents){
         this.name = name;
         this.trainComponents = allTrainComponents;
+    }
+
+    @Override
+    public String toString() {
+        return "Train: " + name + " has id: " + id + " has components " + trainComponents;
     }
 
     public int getId() {
@@ -58,11 +68,11 @@ public class Train implements Buildable{
 
     public static class TrainBuilder implements IBuilder{
         private String name;
-        private List<TrainComponent> allTrainComponents;
-
-        public void setAllTrainComponents(List<TrainComponent> allTrainComponents) {
-            this.allTrainComponents = allTrainComponents;
-        }
+//        private List<TrainComponent> allTrainComponents;
+//
+//        public void setAllTrainComponents(List<TrainComponent> allTrainComponents) {
+//            this.allTrainComponents = allTrainComponents;
+//        }
 
         TrainBuilder(){}
 
@@ -72,7 +82,7 @@ public class Train implements Buildable{
         }
 
         public Train build(){
-            return new Train(name,allTrainComponents);
+            return new Train(name);
         }
     }
 }

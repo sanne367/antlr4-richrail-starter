@@ -15,7 +15,7 @@ public class TrainComponentPostgresDaoImpl extends AbstractDaoImpl<TrainComponen
 
     public List<TrainComponent> findByTrainId(int id) {
         List<TrainComponent> trainComponents = (List<TrainComponent>) em
-                .createQuery("from Traincomponent where train_id=" + id).getResultList();
+                .createQuery("from traincomponent where train_id=" + id).getResultList();
         if(!trainComponents.isEmpty()){
             return trainComponents;
         }

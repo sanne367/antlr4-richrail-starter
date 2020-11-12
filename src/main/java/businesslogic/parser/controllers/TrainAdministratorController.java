@@ -39,6 +39,13 @@ public class TrainAdministratorController {
         return componentTypeService.getAllComponentTypes();
     }
 
+    public List<Component> giveComponentByName(String name){
+        return componentService.getComponentByName(name);
+    }
+    public Component giveComponentByTypeId(ComponentType componentType){
+        return componentService.getComponentByTypeId(componentType).get(0);
+    }
+
     public List<Component> giveAllComponents(){
         return componentService.getAllComponents();
     }
@@ -47,8 +54,12 @@ public class TrainAdministratorController {
         trainBuilder.name(name);
     }
 
-    public void setTrainComponents(List<TrainComponent> allTrainComponents){
-        trainBuilder.setAllTrainComponents(allTrainComponents);
+//    public void setTrainComponents(List<TrainComponent> allTrainComponents){
+////        trainBuilder.setAllTrainComponents(allTrainComponents);
+////    }
+
+    public Train getTrainByName(String name){
+        return trainService.getTrainByName(name).get(0);
     }
 
     public void setTrainComponentToTrain(Component newComponent, int trainId){
@@ -82,6 +93,10 @@ public class TrainAdministratorController {
         return trainBuilder.build();
     }
 
+    public Train.TrainBuilder getTrainBuilder(){
+        return this.trainBuilder;
+    }
+
     public void saveTrain(Train train){
         trainService.saveOrUpdateTrain(train);
     }
@@ -94,12 +109,18 @@ public class TrainAdministratorController {
         return trainService.getTrainById(id);
     }
 
+    public List<ComponentType> allComponentTypesByName(String name){
+        return componentTypeService.getAllComponentTypesByName(name);
+    }
+
+    public ComponentType getComponenttypeById(int id){
+        return componentTypeService.findComponentTypeById(id);
+    }
     public void saveComponentType(ComponentType componentType){
         componentTypeService.saveOrUpdateComponentType(componentType);
     }
 
-    public void saveComponent(Component component, ComponentType componentType){
-        component.setComponentType(componentType);
+    public void saveComponent(Component component){
         componentService.saveOrUpdateComponent(component);
     }
 

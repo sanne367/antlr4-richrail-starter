@@ -24,5 +24,9 @@ public class ComponentTypeService {
         return componentTypeDao.findById(id);
     }
 
+    public List<ComponentType> getAllComponentTypesByName(String name){
+        return  componentTypeDao.findByName(name);
+    }
+
 
 }

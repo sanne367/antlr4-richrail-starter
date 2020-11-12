@@ -10,6 +10,7 @@ public class Component {
     @GeneratedValue(generator = "component_SEQ")
     private int id;
 
+    // TODO: 12-11-2020 unique 
     @Column(name = "name")
     private String name;
 
@@ -21,6 +22,10 @@ public class Component {
     public Component(ComponentType componentType, String name){
         this.componentType = componentType;
         this.name = name;
+    }
+
+    public String toString() {
+        return "Component: " + name + " has id: " + id + " has componenttype " + componentType;
     }
 
     public int getId() {

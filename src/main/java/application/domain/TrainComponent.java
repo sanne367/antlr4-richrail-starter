@@ -7,6 +7,11 @@ import javax.persistence.*;
 @Table(name = "traincomponent")
 public class TrainComponent {
 
+    @Id
+    @SequenceGenerator(name = "traincomponent_SEQ", sequenceName = "SEQUENCE_traincomponent", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(generator = "traincomponent_SEQ")
+    private int id;
+
     @ManyToOne
     @JoinColumn(name = "train_id", referencedColumnName = "id")
     private Train theTrain;
@@ -26,6 +31,11 @@ public class TrainComponent {
         theTrain = train;
         theComponent = component;
 
+    }
+
+    public String toString() {
+        return "TrainComponent: belongs to " + theTrain.getName() + " with id: " + theTrain.getId() +
+                " has component " + theComponent.getName() + " with id " + theComponent.getId() + " quantity " + quantity;
     }
 
     public Train getTheTrain() {

@@ -1,6 +1,7 @@
 package businesslogic.parser.services;
 
 import application.domain.Component;
+import application.domain.ComponentType;
 import persistence.dao.ComponentDao;
 
 import java.util.List;
@@ -20,7 +21,15 @@ public class ComponentService {
         return componentDao.getAll();
     }
 
+    public List<Component> getComponentByName(String name){
+        return componentDao.findByName(name);
+    }
+    public List<Component> getComponentByTypeId(ComponentType componentType){
+        return componentDao.findByType(componentType);
+    }
+
     public Component getComponentById(int id){
         return componentDao.findById(id);
     }
+
 }
