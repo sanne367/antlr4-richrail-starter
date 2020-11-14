@@ -31,4 +31,7 @@ public class TrainService {
     public List<Train> getTrainByName(String name){
         return traindao.getTrainByName(name);
     }
+    //public List<Object> getTrainByNameO(String name){
+//    return traindao.getTrainByNameO(name);
+//}
 }

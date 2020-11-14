@@ -3,7 +3,7 @@ package application.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "component")
+@Table(name = "component", schema = "public")
 public class Component {
     @Id
     @SequenceGenerator(name = "component_SEQ", sequenceName = "SEQUENCE_component", initialValue = 1, allocationSize = 1)

@@ -1,7 +1,6 @@
 package persistence.postgresDaoImpl;
 
 import application.domain.Component;
-import application.domain.Component;
 import application.domain.ComponentType;
 import persistence.dao.AbstractDaoImpl;
 import persistence.dao.ComponentDao;
@@ -15,19 +14,21 @@ public class ComponentPostgresDaoImpl extends AbstractDaoImpl<Component> impleme
     }
 
     public List<Component> findByType(ComponentType componentType){
+        String query = "Select * from Component where componenttype_id=" + "'" + componentType.getId() + "'";
+        @SuppressWarnings("unchecked")
         List<Component> componentList = (List<Component>) em
-                .createQuery("from Component where componenttype_id=" + componentType.getId()).getResultList();
+                .createNativeQuery(query, Component.class).getResultList();
         if(!componentList.isEmpty()){
             return componentList;
         }
         return null;
-
-
     }
 
     public List<Component> findByName(String name){
+        String query = "Select * from Component where \"name\"=" + "'" + name + "'";
+        @SuppressWarnings("unchecked")
         List<Component> componentList = (List<Component>) em
-                .createQuery("from Component where name=" + name).getResultList();
+                .createNativeQuery(query, Component.class).getResultList();
         if(!componentList.isEmpty()){
             return componentList;
         }

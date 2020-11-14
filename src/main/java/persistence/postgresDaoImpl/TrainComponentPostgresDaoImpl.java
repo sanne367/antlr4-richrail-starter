@@ -14,8 +14,10 @@ public class TrainComponentPostgresDaoImpl extends AbstractDaoImpl<TrainComponen
 
 
     public List<TrainComponent> findByTrainId(int id) {
+        String query = "Select * from traincomponent where \"train_id\"=" + "'" + id + "'";
+        @SuppressWarnings("unchecked")
         List<TrainComponent> trainComponents = (List<TrainComponent>) em
-                .createQuery("from traincomponent where train_id=" + id).getResultList();
+                .createNativeQuery(query, TrainComponent.class).getResultList();
         if(!trainComponents.isEmpty()){
             return trainComponents;
         }

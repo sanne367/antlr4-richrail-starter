@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "train")
+@Table(name = "train", schema = "public")
 public class Train implements Buildable{
     @Id
     @SequenceGenerator(name = "train_SEQ", sequenceName = "SEQUENCE_train", initialValue = 1, allocationSize = 1)

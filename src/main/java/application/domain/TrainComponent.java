@@ -4,7 +4,7 @@ package application.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "traincomponent")
+@Table(name = "traincomponent", schema = "public")
 public class TrainComponent {
 
     @Id
@@ -14,11 +14,11 @@ public class TrainComponent {
 
     @ManyToOne
     @JoinColumn(name = "train_id", referencedColumnName = "id")
-    private Train theTrain;
+    private Train train;
 
     @ManyToOne
     @JoinColumn(name = "component_id", referencedColumnName = "id")
-    private Component theComponent;
+    private Component component;
 
     @Column(name = "quantity")
     private int quantity;
@@ -28,30 +28,30 @@ public class TrainComponent {
     }
 
     public TrainComponent(Train train, Component component){
-        theTrain = train;
-        theComponent = component;
+        this.train = train;
+        this.component = component;
 
     }
 
     public String toString() {
-        return "TrainComponent: belongs to " + theTrain.getName() + " with id: " + theTrain.getId() +
-                " has component " + theComponent.getName() + " with id " + theComponent.getId() + " quantity " + quantity;
+        return "TrainComponent: belongs to " + train.getName() + " with id: " + train.getId() +
+                " has component " + component.getName() + " with id " + component.getId() + " quantity " + quantity;
     }
 
-    public Train getTheTrain() {
-        return theTrain;
+    public Train getTrain() {
+        return train;
     }
 
-    public void setTheTrain(Train theTrain) {
-        this.theTrain = theTrain;
+    public void setTrain(Train train) {
+        this.train = train;
     }
 
-    public Component getTheComponent() {
-        return theComponent;
+    public Component getComponent() {
+        return component;
     }
 
-    public void setTheComponent(Component theComponent) {
-        this.theComponent = theComponent;
+    public void setComponent(Component component) {
+        this.component = component;
     }
 
     public int getQuantity() {

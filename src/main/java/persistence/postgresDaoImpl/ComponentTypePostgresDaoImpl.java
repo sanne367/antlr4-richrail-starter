@@ -14,9 +14,12 @@ public class ComponentTypePostgresDaoImpl extends AbstractDaoImpl<ComponentType>
     }
 
     public List<ComponentType> findByName(String name){
+        String query = "Select * from Componenttype where \"name\"=" + "'" + name + "'";
+        @SuppressWarnings("unchecked")
         List<ComponentType> componentTypeList = (List<ComponentType>) em
-               .createQuery("from componenttype where name=" + name).getResultList();
+               .createNativeQuery(query, ComponentType.class).getResultList();
             if(!componentTypeList.isEmpty()){
+                return componentTypeList;
             }
             return null;
 
