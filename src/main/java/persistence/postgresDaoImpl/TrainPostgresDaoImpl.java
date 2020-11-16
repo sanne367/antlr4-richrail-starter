@@ -26,10 +26,10 @@ public class TrainPostgresDaoImpl extends AbstractDaoImpl<Train> implements Trai
 //    }
 
     public List<Train> getTrainByName(String name){
-        String query = "Select * from Train where \"name=\""+ "'" + name +"'";
+        String query = "Select * from Train where \"name\"="+ "'" + name +"'";
         @SuppressWarnings("unchecked")
         List<Train> trainList = (List<Train>) em
-                .createNativeQuery(query).getResultList();
+                .createNativeQuery(query, Train.class).getResultList();
         if(!trainList.isEmpty()){
             return trainList;
         }

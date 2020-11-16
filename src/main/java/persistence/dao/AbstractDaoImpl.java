@@ -37,7 +37,7 @@ public abstract class AbstractDaoImpl<T> implements GenericDAO<T> {
         em.getTransaction().begin();
         em.remove(entity);
         em.getTransaction().commit();
-        em.close();
+//        em.close();
     }
 
     @Override
