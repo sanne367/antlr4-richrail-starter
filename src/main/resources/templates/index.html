@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page Title</title>
+
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>alltrains </p>
+<table id="treinen">
+</table>
+<script src="/js/bais.js"></script>
+<script>
+    function initPage() {
+        th:showtrain()
+    }
+    window.onload = initPage;
+</script>
+</body>
+</html>
