@@ -1,6 +1,7 @@
 package presentation;
 
 import application.domain.Train;
+import application.domain.TrainComponent;
 import businesslogic.parser.controllers.TrainAdministratorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -44,6 +45,9 @@ public class SpringBootController {
     public List<Train> getAllTrains(){
         return trainAdministratorController.giveAllTrains();
     }
+
+    @GetMapping(value = "/alltraincomponents")
+    public List<TrainComponent> getTrainComponents(){return trainAdministratorController.allTrainComponents();}
 
     @RequestMapping(value = "/bais.js")
     @ResponseBody

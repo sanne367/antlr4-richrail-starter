@@ -23,7 +23,7 @@ function showtrain(){
             for(const Object of myJson){
                 console.log(Object);
                 var rij = document.createElement("tr");
-                rij.setAttribute("id", Object.id)
+                rij.setAttribute("id", Object.id);
 
                 var treinId = document.createElement("td");
                 var naamTekst = document.createTextNode(Object.id);
@@ -37,6 +37,33 @@ function showtrain(){
 
                 document.querySelector("#treinen").appendChild(rij);
             }
+
+        });
+
+
+}
+
+
+function showtrainimg(){
+    fetch("http://localhost:8080/alltraincomponents")
+        .then(response => response.json())
+        .then(function(myJson){
+            for(const Object of myJson){
+                console.log(Object);
+                document.querySelector("#trein").innerHTML += Object.train.id;
+                document.querySelector("#trein").innerHTML += '&#9822;';
+                 var i = Object.quantity;
+                 console.log(i);
+                 while(i > 0){
+                     i -= 1;
+                    document.querySelector("#trein").innerHTML += '&#9898;';
+                 }
+            }
+                
+                
+
+        
+            
 
         });
 
