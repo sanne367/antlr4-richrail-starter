@@ -8,6 +8,8 @@
    <children>
       <Label text="Welkom" />
       <Button fx:id="Alletreinen" text="Bekijk alle treinen" onAction="#goToTrainList"/>
+      <Button fx:id="AlleTreinComponent" text="Add component to Train" onAction="#goToTrainComponentAdd"/>
+
    </children>
 
    <padding>

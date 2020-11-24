@@ -22,4 +22,9 @@ public class WelcomeScene {
         SceneManager.showTrainList();
     }
 
+    @FXML
+    private void goToTrainComponentAdd() throws IOException{
+        SceneManager.showTrainComponentAdd();
+    }
+
 }

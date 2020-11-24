@@ -1,6 +1,7 @@
 package presentation;
 
 import application.domain.Train;
+import application.domain.TrainComponent;
 import businesslogic.parser.controllers.TrainAdministratorController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,11 @@ public class AppConfig {
     @Bean
     public TrainScene trainInfo(TrainAdministratorController trainAdministratorController){
         return new TrainScene(trainAdministratorController);
+    }
+
+    @Bean
+    public TrainComponentScene trainComponentScene(TrainAdministratorController trainAdministratorController){
+        return new TrainComponentScene(trainAdministratorController);
     }
 
 }

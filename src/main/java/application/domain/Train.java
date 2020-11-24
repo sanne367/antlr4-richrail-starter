@@ -14,14 +14,15 @@ public class Train implements Buildable{
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(cascade = { CascadeType.MERGE})
-    @JoinTable(
-            name = "traincomponent",
-            joinColumns = {@JoinColumn(name = "train_id",referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "component_id",referencedColumnName = "id")}
-
-    )
-    List<TrainComponent> trainComponents;
+//    @ManyToMany(cascade = { CascadeType.MERGE})
+////    @JoinTable(
+////            name = "traincomponent",
+////            joinColumns = {@JoinColumn(name = "train_id",referencedColumnName = "id")},
+////            inverseJoinColumns = {@JoinColumn(name = "component_id",referencedColumnName = "id")}
+////
+////    )
+    @OneToMany(mappedBy = "train")
+    private List<TrainComponent> trainComponents;
     public Train(String name){
         this.name = name;
     }
@@ -35,7 +36,12 @@ public class Train implements Buildable{
 
     @Override
     public String toString() {
-        return "Train: " + name + " has id: " + id + " has components " + trainComponents;
+        String s =  "Train: " + name + " has id: " + id + " " +
+                " has components : ";
+        for(TrainComponent t : getTrainComponents()){
+            s += t.toString();
+        }
+        return s;
     }
 
     public int getId() {

@@ -68,8 +68,8 @@ public class TrainAdministratorController {
         return trainService.getTrainByName(name);
     }
 
-    public void setTrainComponentToTrain(Component newComponent, int trainId){
-        List<TrainComponent> allTrainComponentsByTrain = allComponentByTrainId(trainId);
+    public void setTrainComponentToTrain(Component newComponent, Train train){
+        List<TrainComponent> allTrainComponentsByTrain = allComponentByTrainId(train.getId());
         System.out.println(allTrainComponentsByTrain);
         if(allTrainComponentsByTrain != null) {
             for (TrainComponent trainComponent : allTrainComponentsByTrain) {
@@ -82,20 +82,28 @@ public class TrainAdministratorController {
         }else{
             TrainComponent newTrainComponent = new TrainComponent();
             newTrainComponent.setComponent(newComponent);
-            newTrainComponent.setTrain(trainService.getTrainById(trainId));
+            newTrainComponent.setTrain(trainService.getTrainById(train.getId()));
             newTrainComponent.setQuantity(1);
             trainComponentService.saveOrUpdateTrainComponent(newTrainComponent);
         }
 
     }
-    public void deleteTrainComponentFromTrain(Component component, int trainId){
-        List<TrainComponent> allTrainComponentsByTrain = allComponentByTrainId(trainId);
+    public void deleteTrainComponentFromTrain(Component component, Train train){
+        List<TrainComponent> allTrainComponentsByTrain = allComponentByTrainId(train.getId());
         for(TrainComponent trainComponent : allTrainComponentsByTrain){
             if(trainComponent.getComponent().equals(component)) {
-                trainComponentService.deleteTrainComponent(trainComponent);
+                if(trainComponent.getQuantity() == 1){
+                    trainComponentService.deleteTrainComponent(trainComponent);
+                }
+                else if(trainComponent.getQuantity() >1 ){
+                     int quantity = trainComponent.getQuantity();
+                    trainComponent.setQuantity( quantity -= 1);
+                    trainComponentService.saveOrUpdateTrainComponent(trainComponent);
+                }
             }
         }
     }
+
     public List<TrainComponent> allComponentByTrainId(int id){
         return trainComponentService.getTrainComponentsByTrainId(id);
     }

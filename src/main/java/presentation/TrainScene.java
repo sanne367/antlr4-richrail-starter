@@ -43,4 +43,17 @@ public class TrainScene {
             items.addAll(allTrainComponents);
         }
     }
+
+    public void handleDelete(){
+        TrainComponent selection = this.trainComponentList
+                .getSelectionModel()
+                .getSelectedItem();
+
+        if (selection == null) {
+            return;
+        }
+
+        this.trainAdministratorController.deleteTrainComponentFromTrain(selection.getComponent(), selection.getTrain());
+        this.loadTrainInfo();
+    }
 }

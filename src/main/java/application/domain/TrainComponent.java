@@ -13,11 +13,11 @@ public class TrainComponent {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "train_id", referencedColumnName = "id")
+    @JoinColumn(name = "train_id")
     private Train train;
 
     @ManyToOne
-    @JoinColumn(name = "component_id", referencedColumnName = "id")
+    @JoinColumn(name = "component_id")
     private Component component;
 
     @Column(name = "quantity")
@@ -34,8 +34,7 @@ public class TrainComponent {
     }
 
     public String toString() {
-        return "TrainComponent: belongs to " + train.getName() + " with id: " + train.getId() +
-                " has component " + component.getName() + " with id " + component.getId() + " quantity " + quantity;
+        return component.getName() + " with id " + component.getId() + " quantity " + this.quantity;
     }
 
     public Train getTrain() {

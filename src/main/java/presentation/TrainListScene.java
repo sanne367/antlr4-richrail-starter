@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.springframework.stereotype.Controller;
 
@@ -23,6 +24,9 @@ public class TrainListScene{
 
     @FXML
     private ListView<Train> trainList;
+
+    @FXML
+    private TextField inputTitle;
 
     public TrainListScene(TrainAdministratorController trainAdministratorController){
         this.trainAdministratorController = trainAdministratorController;
@@ -50,6 +54,19 @@ public class TrainListScene{
         }
 
         this.trainAdministratorController.deleteTrain(selection);
+        this.loadTrains();
+    }
+    public void handleNew(){
+        String title = this.inputTitle
+                .getCharacters()
+                .toString();
+
+        if (title.isBlank()) {
+            return;
+        }
+        trainAdministratorController.setTrainName(title);
+        Train train = trainAdministratorController.getTrainBuilder().build();
+        this.trainAdministratorController.saveTrain(train);
         this.loadTrains();
     }
 

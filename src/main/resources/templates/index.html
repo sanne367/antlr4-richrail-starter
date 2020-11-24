@@ -2,15 +2,54 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Page Title</title>
-
+    <link th:href="@{/css/custom.css}" rel="stylesheet" />
+    
 </head>
 <body>
+        <header class="page-header">
+                <nav>
+                  <a href="#0">
+                   
+                  </a>
+                  <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
+                    <svg width="20" height="20" aria-hidden="true">
+                      <use xlink:href="#down"></use>
+                    </svg>
+                  </button>
+                  <ul class="admin-menu">
+                    <li class="menu-heading">
+                      <h3>Admin</h3>
+                    </li>
+                    <li>
+                      <a href="#0">
+                        <span>Train Overview</span>
+                      </a>
+                    </li>
+                     
+                    <!-- more list items here -->
+            
+                  </ul>
+                </nav>
+              </header>
+                  <section class="page-content">
+                        <section class="grid">
+                          <article>
 
-<h1>This is a Heading</h1>
-<p>alltrains </p>
-<p id ="trein"></p>
-<table id="treinen">
-</table>
+                                <p id ="trein"></p>
+                                <table id="treinen">
+                                </table>
+                          </article>
+                          <article></article>
+                          <article></article>
+                          <article></article>
+                          <article></article>
+                          <article></article>
+                          <article></article>
+                          <article></article>
+                        </section>
+                      </section>
+
+
 <script src="/js/bais.js"></script>
 <script>
     function initPage() {

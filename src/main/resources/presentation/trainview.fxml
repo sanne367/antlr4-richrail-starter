@@ -9,9 +9,9 @@
    <children>
       <Label fx:id="trainInfo" />
       <ListView fx:id="trainComponentList"/>
+      <Button onAction="#handleDelete">Delete</Button>
    </children>
    <HBox styleClass="actions" spacing="4">
-      <!--<TextField fx:id="inputTitle"/>-->
       <Pane HBox.hgrow="ALWAYS"/>
    </HBox>
 

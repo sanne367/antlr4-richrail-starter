@@ -1,6 +1,7 @@
 package application.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "component", schema = "public")
@@ -18,6 +19,9 @@ public class Component {
     @JoinColumn(name = "componenttype_id", referencedColumnName = "id")
     private ComponentType componentType;
 
+    @OneToMany(mappedBy = "component")
+    private List<TrainComponent> trainComponent;
+
     public Component(){};
     public Component(ComponentType componentType, String name){
         this.componentType = componentType;
@@ -25,7 +29,7 @@ public class Component {
     }
 
     public String toString() {
-        return "Component: " + name + " has id: " + id + " has componenttype " + componentType;
+        return "Component: " + name + " has id: " + id + " " + componentType;
     }
 
     public int getId() {

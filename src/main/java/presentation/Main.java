@@ -25,6 +25,7 @@ public class Main extends Application {
 
         // Configure and boot up GUI through SceneManager
         SceneManager.start(context, stage);
+
     }
 
     public static void main(String[] args) {
