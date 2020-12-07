@@ -127,7 +127,7 @@
                         <!-- Default configuration for running -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.presentation.App</mainClass>
+                            <mainClass>org.rail.presentation.Main</mainClass>
                         </configuration>
                     </execution>
                     <execution>
@@ -137,7 +137,7 @@
                             <options>
                                 <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:8000</option>
                             </options>
-                            <mainClass>org.presentation.App</mainClass>
+                            <mainClass>org.rail.presentation.Main</mainClass>
                         </configuration>
                     </execution>
                 </executions>

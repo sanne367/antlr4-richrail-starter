@@ -4,10 +4,10 @@
              version="2.0">
 
     <persistence-unit name="hibernate.postgres">
-        <class>application.domain.Component</class>
-        <class>application.domain.ComponentType</class>
-        <class>application.domain.Train</class>
-        <class>application.domain.TrainComponent</class>
+        <class>rail.domain.Component</class>
+        <class>rail.domain.ComponentType</class>
+        <class>rail.domain.Train</class>
+        <class>rail.domain.TrainComponent</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
