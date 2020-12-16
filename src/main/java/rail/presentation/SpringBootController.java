@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-@RestController
+//@RestController
 public class SpringBootController {
 
     public TrainAdministratorController trainAdministratorController = new TrainAdministratorController();

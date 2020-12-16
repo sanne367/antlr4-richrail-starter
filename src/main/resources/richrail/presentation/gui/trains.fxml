@@ -8,11 +8,14 @@
       spacing="20.0"
       xmlns="http://javafx.com/javafx/8.0.171"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="richrail.presentation.gui.WelcomeScene">
+      fx:controller="richrail.presentation.gui.TrainScene">
 
     <children>
-        <Label text="Trains"/>
-
+        <Label fx:id="trainInfo" />
+        <ListView fx:id="trainList"/>
+        <TextField fx:id="nameNew"/>
+        <TextField fx:id="weightNew"/>
+        <Button onAction="#handleNew">New</Button>
     </children>
 
     <padding>

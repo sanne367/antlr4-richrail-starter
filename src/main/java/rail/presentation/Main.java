@@ -6,26 +6,24 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.io.IOException;
 
-/**
- * JavaFX App
- */
-public class Main extends Application {
 
-    public void start(Stage stage) throws IOException {
-        // Setup Spring Context for dependency injection (DI)
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-
-        // Configure and wire up Beans in AppConfig
-        context.register(AppConfig.class);
-        context.refresh();
-
-        // Configure and boot up gui through SceneManager
-        SceneManager.start(context, stage);
-    }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
+//public class Main extends Application {
+//
+//    public void start(Stage stage) throws IOException {
+//        // Setup Spring Context for dependency injection (DI)
+//        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+//
+//        // Configure and wire up Beans in AppConfig
+//        context.register(AppConfig.class);
+//        context.refresh();
+//
+//        // Configure and boot up gui through SceneManager
+//        SceneManager.start(context, stage);
+//    }
+//
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
 
 //    public static void main(String[] args) {
 ////        CharStream lineStream = CharStreams.fromString("new train tr1");
@@ -65,4 +63,4 @@ public class Main extends Application {
 //        System.out.println(trainAdministratorController.giveAllTrains());
 //        System.out.println(trainAdministratorController.allTrainComponents());
 
-}
+//}

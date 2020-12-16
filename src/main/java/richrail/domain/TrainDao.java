@@ -1,6 +1,8 @@
 package richrail.domain;
 
 public interface TrainDao {
-    void save(Train train);
+    Train save(Train train);
     Train findByName(String name);
+
+    Iterable<Train> findAll();
 }
