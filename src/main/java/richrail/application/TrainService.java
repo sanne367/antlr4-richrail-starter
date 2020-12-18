@@ -1,10 +1,7 @@
 package richrail.application;
 
 import org.springframework.transaction.annotation.Transactional;
-import richrail.domain.ElectricPowerSource;
-import richrail.domain.PowerSource;
-import richrail.domain.Train;
-import richrail.domain.TrainDao;
+import richrail.domain.*;
 
 
 @Transactional
@@ -19,6 +16,8 @@ public class TrainService {
         Train train = new Train(name, weight);
         PowerSource powerSource = new ElectricPowerSource();
         train.setPowerSource(powerSource);
+        Wagon wagon = new CargoWagon();
+        train.add(wagon);
         return this.trainDao.save(train);
     }
 

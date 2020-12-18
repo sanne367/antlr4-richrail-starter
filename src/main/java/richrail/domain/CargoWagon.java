@@ -1,12 +1,16 @@
 package richrail.domain;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.util.UUID;
 
-public class CargoWagon implements Wagon {
-    private UUID id;
+@Entity
+@DiscriminatorValue("cargo")
+public class CargoWagon extends Wagon {
 
     @Override
-    public UUID getId() {
-        return id;
+    public String toString() {
+        return "Wagon:" + this.getClass().getAnnotation(DiscriminatorValue.class).value();
     }
 }

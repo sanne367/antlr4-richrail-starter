@@ -7,8 +7,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "Train")
-public class Train {
-        //implements Iterable<Wagon> {
+public class Train implements Iterable<Wagon> {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -25,10 +24,19 @@ public class Train {
     private int weight;
 
     @OneToOne(cascade = CascadeType.ALL)
-//    @MapsId
     private PowerSource powerSource;
-//
+
+//    @OneToMany(cascade = CascadeType.ALL)
+//    //@ElementCollection
+//    @JoinTable(name = "train_wagons",
+//            joinColumns = {@JoinColumn(name = "train_id", referencedColumnName = "id")},
+//            inverseJoinColumns = {@JoinColumn(name = "wagon_id", referencedColumnName = "id")})
+//    @MapKeyColumn(name = "wagon_type")
+//    //@Column(name = "wagons_id")
 //    private Map<Integer, Wagon> wagons = new HashMap<>();
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<Wagon> wagons = new ArrayList<>();
 
     public Train(){};
     public Train(String name){
@@ -39,27 +47,27 @@ public class Train {
         this.weight = weight;
     }
 
-//    public Train(String name, Map<Integer, Wagon> wagons) {
-//        this.name = name;
-//        this.wagons = wagons;
-//    }
-//
-//    public void add(Wagon wagon) {
-//        this.wagons.put(wagon.getId(), wagon);
-//    }
-//
-//    public void remove(int index) {
-//        this.wagons.remove(index);
-//    }
+    public Train(String name, List<Wagon> wagons) {
+        this.name = name;
+        this.wagons = wagons;
+    }
+
+    public void add(Wagon wagon) {
+        this.wagons.add(wagon);
+    }
+
+    public void remove(int index) {
+        this.wagons.remove(index);
+    }
 
     public String getName() {
         return name;
     }
 
-//    @Override
-//    public Iterator<Wagon> iterator() {
-//        return this.wagons.values().iterator();
-//    }
+    @Override
+    public Iterator<Wagon> iterator() {
+        return this.wagons.iterator();
+    }
 
     public PowerSource getPowerSource() {
         return powerSource;
@@ -75,6 +83,10 @@ public class Train {
         if (o == null || getClass() != o.getClass()) return false;
         Train train = (Train) o;
         return Objects.equals(name, train.name) && Objects.equals(weight, train.weight);
+    }
+
+    public String toString(){
+        return "Train: " + this.name + " " + this.powerSource + " " + this.wagons;
     }
 
 

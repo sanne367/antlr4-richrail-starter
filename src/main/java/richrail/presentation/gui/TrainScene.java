@@ -37,8 +37,8 @@ public class TrainScene {
 
         ObservableList<Train> items = trainList.getItems();
         items.clear();
-        Train train = service.addNewTrain("test2", 2563);
-        System.out.println(train);
+//        Train train = service.addNewTrain("test2", 2563);
+  //      System.out.println(train);
         Iterable<Train> allTrains = service.allTrains();
 
         System.out.println(allTrains);
