@@ -3,6 +3,9 @@ package richrail.application;
 import org.springframework.transaction.annotation.Transactional;
 import richrail.domain.*;
 
+import java.util.Optional;
+import java.util.UUID;
+
 
 @Transactional
 public class TrainService {
@@ -27,6 +30,10 @@ public class TrainService {
 //            System.out.println("treinrepos" + t);
 //        }
         return this.trainDao.findAll();
+    }
+
+    public Optional<Train> getTrainById(UUID id){
+        return this.trainDao.findById(id);
     }
 
 //

@@ -3,6 +3,9 @@ package richrail.data;
 import richrail.domain.Train;
 import richrail.domain.TrainDao;
 
+import java.util.Optional;
+import java.util.UUID;
+
 public class SpringTrainDao implements TrainDao {
     private final TrainJpaRepository trainJpaRepository;
 
@@ -17,9 +20,12 @@ public class SpringTrainDao implements TrainDao {
     }
 
     @Override
-    public Train findByName(String name) {
-        return null;
+    public Optional<Train> findById(UUID id) {
+        return this.trainJpaRepository.findById(id);
     }
+
+    @Override
+    public Train findByName(String name){return null;};
 
     @Override
     public Iterable<Train> findAll() {

@@ -4,12 +4,24 @@ import org.springframework.transaction.annotation.Transactional;
 import rail.persistence.dao.DaoProvider;
 import rail.persistence.postgresDaoImpl.PostgresDaoImplProvider;
 import richrail.domain.Train;
+import richrail.domain.Wagon;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @Transactional
 public class AdministrationService {
 
     private final TrainService trainService;
+    public static UUID trainId;
 
+    public void setTrainId(UUID trainId) {
+        this.trainId = trainId;
+    }
+
+    public static UUID getTrainId() {
+        return trainId;
+    }
 
     public AdministrationService(TrainService trainService){
 
@@ -23,4 +35,11 @@ public class AdministrationService {
     public Iterable<Train> allTrains(){
         return this.trainService.getAllTrains();
     }
+
+    public Train getTrainById(UUID id){
+        return this.trainService.getTrainById(id).get();
+    }
+
+
+
 }

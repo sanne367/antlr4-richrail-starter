@@ -5,6 +5,8 @@ import richrail.domain.TrainDao;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
 public class InMemoryTrainDao implements TrainDao {
     private Map<String, Train> trains = new HashMap<>();
@@ -17,6 +19,11 @@ public class InMemoryTrainDao implements TrainDao {
 
     public Train findByName(String name) {
         return this.trains.get(name);
+    }
+
+    @Override
+    public Optional<Train> findById(UUID Id) {
+        return Optional.empty();
     }
 
     @Override

@@ -10,6 +10,7 @@ import richrail.data.InMemoryTrainDao;
 import richrail.data.SpringTrainDao;
 import richrail.data.TrainJpaRepository;
 import richrail.domain.TrainDao;
+import richrail.presentation.gui.TrainInfoScene;
 import richrail.presentation.gui.TrainScene;
 import richrail.presentation.gui.WelcomeScene;
 
@@ -39,6 +40,11 @@ public class AppConfig {
     @Bean
     public TrainDao trainDaoV() {
         return new InMemoryTrainDao();
+    }
+
+    @Bean
+    public TrainInfoScene trainInfoSceneV(AdministrationService service){
+        return new TrainInfoScene(service);
     }
 
     @Bean

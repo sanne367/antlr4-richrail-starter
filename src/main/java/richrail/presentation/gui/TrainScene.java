@@ -1,5 +1,6 @@
 package richrail.presentation.gui;
 
+import com.sun.javafx.iio.ios.IosDescriptor;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,6 +8,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import richrail.application.AdministrationService;
 import richrail.domain.Train;
+
+import java.io.IOException;
 
 
 public class TrainScene {
@@ -28,9 +31,11 @@ public class TrainScene {
     @FXML
     private TextField weightNew;
 
+
     public void initialize(){
         this.loadTrains();
     }
+
 
     private void loadTrains(){
         System.out.println("alle treinen printen");
@@ -66,5 +71,13 @@ public class TrainScene {
         Train train = service.addNewTrain(name, weight);
         System.out.println(train);
         this.loadTrains();
+    }
+
+    public void showTrainInfo() throws IOException {
+        Train selection = this.trainList
+                .getSelectionModel()
+                .getSelectedItem();
+        service.setTrainId(selection.getId());
+        SceneManager.loadTrainInfoScene();
     }
 }

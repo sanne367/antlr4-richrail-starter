@@ -5,17 +5,28 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Text?>
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rail.presentation.TrainScene">
-   <children>
-      <Label fx:id="trainInfo" />
-      <ListView fx:id="trainComponentList"/>
-      <Button onAction="#handleDelete">Delete</Button>
-   </children>
-   <HBox styleClass="actions" spacing="4">
-      <Pane HBox.hgrow="ALWAYS"/>
-   </HBox>
 
-   <padding>
-      <Insets bottom="100.0" left="100.0" right="100.0" top="100.0" />
-   </padding>
-</VBox>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="richrail.presentation.gui.TrainInfoScene">
+   <children>
+      <fx:include source="menu.fxml"></fx:include>
+      <ListView fx:id="wagonList" layoutX="28.0" layoutY="69.0" prefHeight="229.0" prefWidth="753.0" />
+      <Label fx:id="trainInfo" layoutX="28.0" layoutY="48.0" prefHeight="21.0" prefWidth="190.0" />
+      <!--<Button layoutX="28.0" layoutY="307.0" mnemonicParsing="false" text="Show train" onAction="#showTrainInfo" />-->
+   </children>
+</Pane>
+
+<!--<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rail.presentation.TrainScene">-->
+   <!--<children>-->
+      <!--<Label fx:id="trainInfo" />-->
+      <!--<ListView fx:id="trainComponentList"/>-->
+      <!--<Button onAction="#handleDelete">Delete</Button>-->
+   <!--</children>-->
+   <!--<HBox styleClass="actions" spacing="4">-->
+      <!--<Pane HBox.hgrow="ALWAYS"/>-->
+   <!--</HBox>-->
+
+   <!--<padding>-->
+      <!--<Insets bottom="100.0" left="100.0" right="100.0" top="100.0" />-->
+   <!--</padding>-->
+<!--</VBox>-->

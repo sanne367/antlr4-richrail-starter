@@ -7,15 +7,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
+import richrail.application.AdministrationService;
+import richrail.application.TrainService;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.UUID;
 
 // implement singleton?
 
 public class SceneManager {
     private static final String WELCOME_SCENE = "welcome";
-    private static final String TRAINS_SCENE = "trains";
+    private static final String TRAINS_SCENE = "allTrains";
+    private static final String TRAIN_SCENE = "trainview";
 
     private static ApplicationContext context;
     private static Scene scene;
@@ -49,4 +53,10 @@ public class SceneManager {
     public static void loadTrainScene() throws IOException {
         scene.setRoot(loadFXML(TRAINS_SCENE));
     }
+
+    public static void loadTrainInfoScene() throws IOException {
+        scene.setRoot(loadFXML(TRAIN_SCENE));
+    }
+
+    // TODO: 27-12-2020 log bijhouden & export 
 }
