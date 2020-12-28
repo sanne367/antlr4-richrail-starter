@@ -20,6 +20,7 @@ public class SceneManager {
     private static final String WELCOME_SCENE = "welcome";
     private static final String TRAINS_SCENE = "allTrains";
     private static final String TRAIN_SCENE = "trainview";
+    private static final String WAGONADDTRAIN_SCENE = "addwagontotrain";
 
     private static ApplicationContext context;
     private static Scene scene;
@@ -58,5 +59,8 @@ public class SceneManager {
         scene.setRoot(loadFXML(TRAIN_SCENE));
     }
 
+    public static void loadWagonTrainScene() throws IOException{
+        scene.setRoot(loadFXML(WAGONADDTRAIN_SCENE));
+    }
     // TODO: 27-12-2020 log bijhouden & export 
 }

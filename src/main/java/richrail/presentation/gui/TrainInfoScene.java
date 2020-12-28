@@ -8,6 +8,8 @@ import richrail.domain.Train;
 import richrail.domain.Wagon;
 
 import javafx.scene.control.ListView;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -35,9 +37,30 @@ public class TrainInfoScene {
         System.out.println("alle treininfo printen");
         this.id = service.getTrainId();
         Train train = service.getTrainById(this.id);
-        trainInfo.setText(train.getName() + " , " + train.getPowerSource());
+        System.out.println("De info komt van Trein" + train);
+        trainInfo.setText(train.getId() + ":" + train.getName() + ":" + train.getPowerSource());
         ObservableList<Wagon> items = wagonList.getItems();
+        System.out.println(items);
         items.clear();
         train.iterator().forEachRemaining(items::add);
+    }
+
+    public void deleteWagonFromTrain(){
+        System.out.println("wagon verwijderen");
+        Wagon selectedWagon = this.wagonList
+                .getSelectionModel()
+                .getSelectedItem();
+        if (selectedWagon == null) {
+            return;
+        }
+        Train train = service.getTrainById(this.id);
+        train.remove(selectedWagon);
+        this.service.updateTrain(train);
+        loadTrain();
+    }
+
+    public void addWagonToTrain() throws IOException {
+        service.setTrainId(this.id);
+        SceneManager.loadWagonTrainScene();
     }
 }

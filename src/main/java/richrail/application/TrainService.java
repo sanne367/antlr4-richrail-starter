@@ -23,7 +23,9 @@ public class TrainService {
         train.add(wagon);
         return this.trainDao.save(train);
     }
-
+    public Train updateTrain(Train train){
+        return this.trainDao.save(train);
+    }
     public Iterable<Train> getAllTrains(){
 
 //        for(Train t : this.trainJpaRepository.findAll()){

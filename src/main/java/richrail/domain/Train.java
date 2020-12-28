@@ -53,7 +53,21 @@ public class Train implements Iterable<Wagon> {
     }
 
     public void add(Wagon wagon) {
+        if(wagons.contains(wagon)){
+            int index = wagons.indexOf(wagon);
+            wagons.get(index).setQuantity(wagons.get(index).getQuantity()+1);
+        }
         this.wagons.add(wagon);
+    }
+
+    public void remove(Wagon wagon){
+        if(wagons.contains(wagon)){
+            int index = wagons.indexOf(wagon);
+            if(wagons.get(index).getQuantity() >2){
+                wagons.get(index).setQuantity(wagons.get(index).getQuantity() -1);
+            }
+            this.wagons.remove(wagon);
+        }
     }
 
     public void remove(int index) {
@@ -68,6 +82,11 @@ public class Train implements Iterable<Wagon> {
     public Iterator<Wagon> iterator() {
         return this.wagons.iterator();
     }
+
+    public List<Wagon> getWagons() {
+        return wagons;
+    }
+
 
     public PowerSource getPowerSource() {
         return powerSource;

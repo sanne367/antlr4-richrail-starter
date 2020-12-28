@@ -13,6 +13,7 @@ import java.util.UUID;
 public class AdministrationService {
 
     private final TrainService trainService;
+    private final WagonService wagonService;
     public static UUID trainId;
 
     public void setTrainId(UUID trainId) {
@@ -23,8 +24,8 @@ public class AdministrationService {
         return trainId;
     }
 
-    public AdministrationService(TrainService trainService){
-
+    public AdministrationService(TrainService trainService, WagonService wagonService){
+        this.wagonService = wagonService;
         this.trainService = trainService;
     }
 
@@ -40,6 +41,12 @@ public class AdministrationService {
         return this.trainService.getTrainById(id).get();
     }
 
+    public void updateTrain(Train train){
+        this.trainService.updateTrain(train);
+    }
 
+    public Iterable<Wagon> allWagons(){
+        return this.wagonService.getAllWagons();
+    }
 
 }

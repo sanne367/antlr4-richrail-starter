@@ -13,7 +13,6 @@ public class SpringTrainDao implements TrainDao {
         this.trainJpaRepository = trainJpaRepository;
     }
 
-
     @Override
     public Train save(Train train) {
         return this.trainJpaRepository.save(train);

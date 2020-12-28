@@ -9,6 +9,7 @@ public class ElectricPowerSource extends PowerSource{
 
     @Override
     public String toString() {
-        return "Powersource:" + this.getClass().getAnnotation(DiscriminatorValue.class).value();
+        return "Powersource:" + this.getClass().getAnnotation(DiscriminatorValue.class).value()
+                + "supported Weight:" + super.getMaxWeight();
     }
 }
