@@ -22,8 +22,8 @@
              <Menu text="Treinen">
                  <items>
                      <MenuItem onAction="#goToTrainScene" text="Show all" />
-                     <MenuItem text="Add train" />
-                     <MenuItem text="Delete train" />
+                     <MenuItem onAction="#goToAddTrainScene" text="Add train" />
+                     <MenuItem onAction="#goToDeleteTrainScene" text="Delete train" />
                  </items>
              </Menu>
              <Menu text="Wagons">

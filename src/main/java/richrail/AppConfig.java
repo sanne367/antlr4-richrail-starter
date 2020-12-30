@@ -5,15 +5,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import richrail.application.AdministrationService;
+import richrail.application.PowerSourceService;
 import richrail.application.TrainService;
 import richrail.application.WagonService;
 import richrail.data.*;
 import richrail.domain.TrainDao;
 import richrail.domain.WagonDao;
-import richrail.presentation.gui.TrainInfoScene;
-import richrail.presentation.gui.TrainScene;
-import richrail.presentation.gui.WagonsScene;
-import richrail.presentation.gui.WelcomeScene;
+import richrail.presentation.gui.*;
 
 @Configuration
 @ComponentScan
@@ -30,8 +28,8 @@ public class AppConfig {
     }
 
     @Bean
-    public AdministrationService administrationServiceV(TrainService trainService, WagonService wagonService){
-        return new AdministrationService(trainService, wagonService);
+    public AdministrationService administrationServiceV(TrainService trainService, WagonService wagonService, PowerSourceService powerSourceService){
+        return new AdministrationService(trainService, wagonService, powerSourceService);
     }
     @Bean
     public TrainService trainServiceV(SpringTrainDao trainDao) {
@@ -43,6 +41,15 @@ public class AppConfig {
         return new WagonService(wagonDao);
     }
 
+    @Bean
+    public PowerSourceService powerSourceServiceV(SpringPowerSourceDao springPowerSourceDao){
+        return new PowerSourceService(springPowerSourceDao);
+    }
+
+    @Bean
+    public SpringPowerSourceDao springPowerSourceDao(PowerSourceJpaRepository powerSourceJpaRepository){
+        return new SpringPowerSourceDao(powerSourceJpaRepository);
+    }
     @Bean
     public SpringWagonDao springWagonDaoV(WagonJpaRepository wagonJpaRepository){
         return new SpringWagonDao(wagonJpaRepository);
@@ -60,6 +67,14 @@ public class AppConfig {
     @Bean
     public WagonsScene wagonsSceneV(AdministrationService service){return new WagonsScene(service);}
 
+    @Bean
+    public AddTrainScene addTrainSceneV(AdministrationService service){
+        return new AddTrainScene(service);
+    }
+    @Bean
+    public DeleteTrainScene deleteTrainSceneV(AdministrationService service){
+        return new DeleteTrainScene(service);
+    }
     @Bean
     public SpringTrainDao springTrainDaoV(TrainJpaRepository trainJpaRepository){return new SpringTrainDao(trainJpaRepository);}
 }

@@ -52,26 +52,26 @@ public class TrainScene {
         }
     }
 
-    public void handleNew(){
-        String name = this.nameNew
-                .getCharacters()
-                .toString();
-        System.out.println(name);
-        int weight = Integer.parseInt(this.weightNew
-                .getCharacters()
-                .toString());
-        System.out.println(weight);
-
-        if (name.isBlank() || weight == 0) {
-            nameNew.clear();
-            weightNew.clear();
-            this.loadTrains();
-        }
-
-        Train train = service.addNewTrain(name, weight);
-        System.out.println(train);
-        this.loadTrains();
-    }
+//    public void handleNew(){
+//        String name = this.nameNew
+//                .getCharacters()
+//                .toString();
+//        System.out.println(name);
+//        int weight = Integer.parseInt(this.weightNew
+//                .getCharacters()
+//                .toString());
+//        System.out.println(weight);
+//
+//        if (name.isBlank() || weight == 0) {
+//            nameNew.clear();
+//            weightNew.clear();
+//            this.loadTrains();
+//        }
+//
+//        Train train = service.addNewTrain(name, weight);
+//        System.out.println(train);
+//        this.loadTrains();
+//    }
 
     public void showTrainInfo() throws IOException {
         Train selection = this.trainList

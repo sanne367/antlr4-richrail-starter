@@ -15,12 +15,9 @@ public class TrainService {
         this.trainDao = trainDao;
     }
 
-    public Train createNewTrain(String name, int weight) {
+    public Train createNewTrain(String name, int weight, PowerSource powerSource) {
         Train train = new Train(name, weight);
-        PowerSource powerSource = new ElectricPowerSource();
         train.setPowerSource(powerSource);
-        Wagon wagon = new CargoWagon();
-        train.add(wagon);
         return this.trainDao.save(train);
     }
     public Train updateTrain(Train train){
@@ -34,6 +31,9 @@ public class TrainService {
         return this.trainDao.findAll();
     }
 
+    public void deleteTrain(Train train){
+        this.trainDao.deleteTrain(train);
+    }
     public Optional<Train> getTrainById(UUID id){
         return this.trainDao.findById(id);
     }

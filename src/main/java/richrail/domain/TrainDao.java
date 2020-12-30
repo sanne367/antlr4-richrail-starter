@@ -8,4 +8,5 @@ public interface TrainDao {
     Train findByName(String name);
     Optional<Train> findById(UUID Id);
     Iterable<Train> findAll();
+    void deleteTrain(Train train);
 }

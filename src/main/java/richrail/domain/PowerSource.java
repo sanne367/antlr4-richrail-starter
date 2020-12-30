@@ -9,7 +9,7 @@ import javax.persistence.*;
 public abstract class PowerSource {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private int id;
 
     @Column
     private int maxWeight;
@@ -22,5 +22,13 @@ public abstract class PowerSource {
 
     public void setMaxWeight(int maxWeight) {
         this.maxWeight = maxWeight;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

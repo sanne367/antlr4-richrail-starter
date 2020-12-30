@@ -6,6 +6,7 @@ import javafx.scene.control.ListView;
 import rail.presentation.SceneManager;
 import richrail.application.AdministrationService;
 import richrail.domain.Train;
+import richrail.domain.TrainWagon;
 import richrail.domain.Wagon;
 
 import java.io.IOException;
@@ -45,7 +46,9 @@ public class WagonsScene {
             return;
         }
         Train train = service.getTrainById(this.id);
-        train.add(selectedWagon);
+        TrainWagon trainWagon = new TrainWagon();
+        trainWagon.setWagon(selectedWagon);
+        train.add(trainWagon);
         this.service.updateTrain(train);
         loadWagons();
         // TODO: 28-12-2020 check weight  

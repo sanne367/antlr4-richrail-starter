@@ -30,4 +30,9 @@ public class InMemoryTrainDao implements TrainDao {
     public Iterable<Train> findAll() {
         return trains.values();
     }
+
+    @Override
+    public void deleteTrain(Train train) {
+
+    }
 }

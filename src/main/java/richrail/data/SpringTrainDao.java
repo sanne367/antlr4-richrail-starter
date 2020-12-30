@@ -18,6 +18,7 @@ public class SpringTrainDao implements TrainDao {
         return this.trainJpaRepository.save(train);
     }
 
+
     @Override
     public Optional<Train> findById(UUID id) {
         return this.trainJpaRepository.findById(id);
@@ -29,5 +30,10 @@ public class SpringTrainDao implements TrainDao {
     @Override
     public Iterable<Train> findAll() {
         return this.trainJpaRepository.findAll();
+    }
+
+    @Override
+    public void deleteTrain(Train train) {
+        this.trainJpaRepository.delete(train);
     }
 }

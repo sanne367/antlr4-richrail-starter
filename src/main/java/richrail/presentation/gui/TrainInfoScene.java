@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import richrail.application.AdministrationService;
 import richrail.domain.Train;
+import richrail.domain.TrainWagon;
 import richrail.domain.Wagon;
 
 import javafx.scene.control.ListView;
@@ -22,7 +23,7 @@ public class TrainInfoScene {
     }
 
     @FXML
-    private ListView<Wagon> wagonList;
+    private ListView<TrainWagon> wagonList;
 
     @FXML
     private Label trainInfo;
@@ -39,7 +40,7 @@ public class TrainInfoScene {
         Train train = service.getTrainById(this.id);
         System.out.println("De info komt van Trein" + train);
         trainInfo.setText(train.getId() + ":" + train.getName() + ":" + train.getPowerSource());
-        ObservableList<Wagon> items = wagonList.getItems();
+        ObservableList<TrainWagon> items = wagonList.getItems();
         System.out.println(items);
         items.clear();
         train.iterator().forEachRemaining(items::add);
@@ -47,7 +48,7 @@ public class TrainInfoScene {
 
     public void deleteWagonFromTrain(){
         System.out.println("wagon verwijderen");
-        Wagon selectedWagon = this.wagonList
+        TrainWagon selectedWagon = this.wagonList
                 .getSelectionModel()
                 .getSelectedItem();
         if (selectedWagon == null) {

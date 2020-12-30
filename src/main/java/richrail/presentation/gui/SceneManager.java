@@ -21,6 +21,8 @@ public class SceneManager {
     private static final String TRAINS_SCENE = "allTrains";
     private static final String TRAIN_SCENE = "trainview";
     private static final String WAGONADDTRAIN_SCENE = "addwagontotrain";
+    private static final String ADDTRAIN_SCENE = "addTrain";
+    private static final String DELETETRAIN_SCENE = "deleteTrain";
 
     private static ApplicationContext context;
     private static Scene scene;
@@ -62,5 +64,12 @@ public class SceneManager {
     public static void loadWagonTrainScene() throws IOException{
         scene.setRoot(loadFXML(WAGONADDTRAIN_SCENE));
     }
-    // TODO: 27-12-2020 log bijhouden & export 
+    // TODO: 27-12-2020 log bijhouden & export
+
+    public static void loadAddTrainScene() throws IOException{
+        scene.setRoot(loadFXML(ADDTRAIN_SCENE));
+    }
+    public static void loadDeleteTrainScene() throws IOException{
+        scene.setRoot(loadFXML(DELETETRAIN_SCENE));
+    }
 }

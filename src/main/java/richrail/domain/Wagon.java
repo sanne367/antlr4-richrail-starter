@@ -14,16 +14,9 @@ public abstract class Wagon {
 
     private String wagonTypeName;
 
-
-    private int quantity;
-
     @Column
     private int weight;
 
-
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private Train train;
 
     public Wagon(){}
 
@@ -50,13 +43,6 @@ public abstract class Wagon {
         this.wagonTypeName = wagonType;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
     //    @Override
 //    public String toString() {

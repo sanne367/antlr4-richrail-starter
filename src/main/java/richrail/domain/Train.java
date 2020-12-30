@@ -7,7 +7,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "Train")
-public class Train implements Iterable<Wagon> {
+public class Train implements Iterable<TrainWagon> {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -23,20 +23,12 @@ public class Train implements Iterable<Wagon> {
     @Column
     private int weight;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     private PowerSource powerSource;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    //@ElementCollection
-//    @JoinTable(name = "train_wagons",
-//            joinColumns = {@JoinColumn(name = "train_id", referencedColumnName = "id")},
-//            inverseJoinColumns = {@JoinColumn(name = "wagon_id", referencedColumnName = "id")})
-//    @MapKeyColumn(name = "wagon_type")
-//    //@Column(name = "wagons_id")
-//    private Map<Integer, Wagon> wagons = new HashMap<>();
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private List<Wagon> wagons = new ArrayList<>();
+    @OneToMany(mappedBy = "train" , fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<TrainWagon> train_wagons = new ArrayList<>();
 
     public Train(){};
     public Train(String name){
@@ -47,31 +39,36 @@ public class Train implements Iterable<Wagon> {
         this.weight = weight;
     }
 
-    public Train(String name, List<Wagon> wagons) {
+    public Train(String name, List<TrainWagon> train_wagons) {
         this.name = name;
-        this.wagons = wagons;
+        this.train_wagons = train_wagons;
     }
 
-    public void add(Wagon wagon) {
-        if(wagons.contains(wagon)){
-            int index = wagons.indexOf(wagon);
-            wagons.get(index).setQuantity(wagons.get(index).getQuantity()+1);
+    public void add(TrainWagon wagon) {
+        if(train_wagons.contains(wagon)){
+            int index = train_wagons.indexOf(wagon);
+            train_wagons.get(index).setQuantity(train_wagons.get(index).getQuantity()+1);
         }
-        this.wagons.add(wagon);
+        this.train_wagons.add(wagon);
     }
 
-    public void remove(Wagon wagon){
-        if(wagons.contains(wagon)){
-            int index = wagons.indexOf(wagon);
-            if(wagons.get(index).getQuantity() >2){
-                wagons.get(index).setQuantity(wagons.get(index).getQuantity() -1);
+    public void remove(TrainWagon wagon){
+        if(train_wagons.contains(wagon)){
+            int index = train_wagons.indexOf(wagon);
+            if(train_wagons.get(index).getQuantity() >2){
+                train_wagons.get(index).setQuantity(train_wagons.get(index).getQuantity() -1);
             }
-            this.wagons.remove(wagon);
+            this.train_wagons.remove(wagon);
         }
+    }
+
+    public int calculateWeight(){
+        //weight train + weight wagons <= maxWeight powersource
+        return 0;
     }
 
     public void remove(int index) {
-        this.wagons.remove(index);
+        this.train_wagons.remove(index);
     }
 
     public String getName() {
@@ -79,12 +76,12 @@ public class Train implements Iterable<Wagon> {
     }
 
     @Override
-    public Iterator<Wagon> iterator() {
-        return this.wagons.iterator();
+    public Iterator<TrainWagon> iterator() {
+        return this.train_wagons.iterator();
     }
 
-    public List<Wagon> getWagons() {
-        return wagons;
+    public List<TrainWagon> getTrain_wagons() {
+        return train_wagons;
     }
 
 
@@ -109,7 +106,7 @@ public class Train implements Iterable<Wagon> {
     }
 
     public String toString(){
-        return "Train: " + this.name + " " + this.powerSource + " " + this.wagons;
+        return "Train: " + this.name + " " + this.powerSource + " " + this.train_wagons;
     }
 
 
