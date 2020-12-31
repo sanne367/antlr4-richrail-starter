@@ -43,4 +43,24 @@ public class TrainWagon {
     public void setWagon(Wagon wagon) {
         this.wagon = wagon;
     }
+
+    // TODO: 31-12-2020 check weight & check quantity
+
+
+    @Override
+    public String toString() {
+        return quantity + " : " + wagon;
+    }
+
+    @Override
+    public boolean equals(Object otherObject) {
+        if (otherObject instanceof TrainWagon) {
+            TrainWagon otherWagon = (TrainWagon) otherObject;
+
+            if (this.train.equals(otherWagon.train) &&
+                    this.wagon.equals(otherWagon.wagon))
+                return true;
+        }
+        return false;
+    }
 }

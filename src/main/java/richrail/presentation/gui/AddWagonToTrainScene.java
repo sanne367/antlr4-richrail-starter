@@ -12,11 +12,11 @@ import richrail.domain.Wagon;
 import java.io.IOException;
 import java.util.UUID;
 
-public class WagonsScene {
+public class AddWagonToTrainScene {
     private AdministrationService service;
     public UUID id;
 
-    public WagonsScene(AdministrationService service){
+    public AddWagonToTrainScene(AdministrationService service){
         this.service = service;
     }
 
@@ -34,7 +34,12 @@ public class WagonsScene {
         System.out.println(items);
         items.clear();
         Iterable<Wagon> allWagons = service.allWagons();
-        allWagons.iterator().forEachRemaining(items::add);
+        for(Wagon wagon : allWagons){
+            if(wagon.getWagonTypeName() != null){
+                items.add(wagon);
+            }
+        }
+        //allWagons.iterator().forEachRemaining(items::add);
     }
     
     public void addWagonToTrain(){
@@ -46,12 +51,24 @@ public class WagonsScene {
             return;
         }
         Train train = service.getTrainById(this.id);
-        TrainWagon trainWagon = new TrainWagon();
-        trainWagon.setWagon(selectedWagon);
-        train.add(trainWagon);
+        for(TrainWagon trainWagon : train.getTrain_wagons()){
+            System.out.println(trainWagon);
+            if(trainWagon.getWagon().equals(selectedWagon)) {
+                System.out.println(trainWagon);
+                trainWagon.setQuantity(trainWagon.getQuantity() + 1);
+                break;
+            }
+        }
+
+//        TrainWagon trainWagon = new TrainWagon();
+//        trainWagon.setTrain(train);
+//        trainWagon.setWagon(selectedWagon);
+//        trainWagon.setQuantity(1);
+//        train.add(trainWagon);
+
         this.service.updateTrain(train);
         loadWagons();
-        // TODO: 28-12-2020 check weight  
+        // TODO: 28-12-2020 check weight & check quantity & messagefield
     }
 
     public void backToTrainInfo() throws IOException {

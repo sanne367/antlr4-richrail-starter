@@ -70,4 +70,14 @@ public class AdministrationService {
     public Iterable<PowerSource> allPowerSourcesByWeightCompatibility(int weight){
         return this.powerSourceService.getAllPowerSourcesByWeightCompatibility(weight);
     }
+
+    public Wagon addWagon(Wagon wagon){
+        return this.wagonService.addWagon(wagon);
+    }
+
+    public Iterable<Wagon> getAllWagonsByType(){
+
+        return this.wagonService.getAllWagonTypes();
+    }
+
 }

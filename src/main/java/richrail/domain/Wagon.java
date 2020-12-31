@@ -35,11 +35,11 @@ public abstract class Wagon {
         this.id = id;
     }
 
-    public String getWagonType() {
+    public String getWagonTypeName() {
         return wagonTypeName;
     }
 
-    public void setWagonType(String wagonType) {
+    public void setWagonTypeName(String wagonType) {
         this.wagonTypeName = wagonType;
     }
 
@@ -48,4 +48,16 @@ public abstract class Wagon {
 //    public String toString() {
 //        return "Wagon:" + this.getClass().getAnnotation(DiscriminatorColumn.class).name();
 //    }
+    @Override
+    public boolean equals(Object otherObject) {
+        if (otherObject instanceof Wagon) {
+            Wagon otherWagon = (Wagon) otherObject;
+
+            if (
+                    getWagonTypeName().equals(otherWagon.getWagonTypeName()) &&
+                    getWeight() == ((Wagon) otherObject).getWeight())
+                return true;
+        }
+        return false;
+    }
 }

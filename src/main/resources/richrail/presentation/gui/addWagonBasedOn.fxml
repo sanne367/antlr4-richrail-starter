@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="richrail.presentation.gui.AddWagonBasedOnScene">
+    <children>
+        <fx:include source="menu.fxml" />
+        <Label layoutX="14.0" layoutY="45.0" prefHeight="21.0" prefWidth="195.0" text="Create new Wagon" />
+        <ChoiceBox fx:id="choiceWagonType" layoutX="219.0" layoutY="81.0" prefHeight="31.0" prefWidth="369.0" />
+        <TextField fx:id="inputNameWagon" layoutX="11.0" layoutY="185.0" />
+        <Label layoutX="14.0" layoutY="152.0" prefHeight="21.0" prefWidth="107.0" text="Name:" />
+        <Label layoutX="14.0" layoutY="86.0" prefHeight="21.0" prefWidth="180.0" text="Choose wagon type:" />
+        <Button layoutX="19.0" layoutY="343.0" mnemonicParsing="false" onAction="#createNewWagon" prefHeight="31.0" prefWidth="186.0" text="Create Wagon" />
+        <TextArea fx:id="messageText" layoutX="226.0" layoutY="340.0" prefHeight="31.0" prefWidth="563.0" />
+        <TextField fx:id="inputWeightWagon" layoutX="523.0" layoutY="185.0" />
+        <Label layoutX="523.0" layoutY="152.0" prefHeight="21.0" prefWidth="107.0" text="Weight:" />
+      <Label layoutX="226.0" layoutY="152.0" prefHeight="21.0" prefWidth="186.0" text="Name of goods:" />
+      <TextField fx:id="inputNameOfGoods" layoutX="219.0" layoutY="185.0" prefHeight="31.0" prefWidth="274.0" />
+    </children>
+</Pane>

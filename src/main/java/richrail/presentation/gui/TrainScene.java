@@ -77,7 +77,7 @@ public class TrainScene {
         Train selection = this.trainList
                 .getSelectionModel()
                 .getSelectedItem();
-        service.setTrainId(selection.getId());
+        this.service.setTrainId(selection.getId());
         SceneManager.loadTrainInfoScene();
     }
 }

@@ -15,4 +15,15 @@ public class WagonService {
     public Iterable<Wagon> getAllWagons(){
         return this.wagonDao.findAll();
     }
+
+    public Wagon addWagon(Wagon wagon){
+        return this.wagonDao.save(wagon);
+    }
+
+    public Iterable<Wagon> getAllWagonTypes(){
+        return this.wagonDao.findAllWagonWithType();
+    }
+
+
+
 }

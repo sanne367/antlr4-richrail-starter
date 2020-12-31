@@ -23,6 +23,7 @@ public class SceneManager {
     private static final String WAGONADDTRAIN_SCENE = "addwagontotrain";
     private static final String ADDTRAIN_SCENE = "addTrain";
     private static final String DELETETRAIN_SCENE = "deleteTrain";
+    private static final String ADDWAGONBASEDON_SCENE = "addWagonBasedOn";
 
     private static ApplicationContext context;
     private static Scene scene;
@@ -71,5 +72,9 @@ public class SceneManager {
     }
     public static void loadDeleteTrainScene() throws IOException{
         scene.setRoot(loadFXML(DELETETRAIN_SCENE));
+    }
+
+    public static void loadAddWagonBasedOnScene() throws IOException{
+        scene.setRoot(loadFXML(ADDWAGONBASEDON_SCENE));
     }
 }

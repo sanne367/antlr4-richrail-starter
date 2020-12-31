@@ -13,12 +13,17 @@ public class CargoWagon extends Wagon {
     @Column
     private String nameOfGoods;
 
+
+
     @Override
     public String toString() {
-        return "Wagon:" + this.getClass().getAnnotation(DiscriminatorValue.class).value() +
-                "wagon_type_name : " + super.getWagonType() + "name of goods: " + nameOfGoods +
-        " weight: " + getWeight();
-
+        if(this.nameOfGoods == null|| this.getWeight() == 0 || this.getWagonTypeName() == null){
+           return this.getClass().getAnnotation(DiscriminatorValue.class).value() + " Wagon" ;
+        }else{
+            return " [Wagon] " + this.getClass().getAnnotation(DiscriminatorValue.class).value()+
+                    " [Wagon_type_name] " + super.getWagonTypeName() + " [Name of goods] " + nameOfGoods +
+                    " [Weight] " + getWeight();
+        }
     }
 
     public String getNameOfGoods() {
@@ -36,5 +41,18 @@ public class CargoWagon extends Wagon {
 
     public void setNameOfGoods(String nameOfGoods) {
         this.nameOfGoods = nameOfGoods;
+    }
+
+    @Override
+    public boolean equals(Object otherObject) {
+        if (otherObject instanceof CargoWagon) {
+            CargoWagon otherWagon = (CargoWagon) otherObject;
+
+            if (this.nameOfGoods.equals(otherWagon.nameOfGoods) &&
+                    super.getWagonTypeName().equals(otherWagon.getWagonTypeName()) &&
+                    super.getWeight() == ((CargoWagon) otherObject).getWeight())
+                return true;
+            }
+        return false;
     }
 }

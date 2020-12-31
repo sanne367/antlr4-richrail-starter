@@ -10,7 +10,6 @@ import richrail.application.TrainService;
 import richrail.application.WagonService;
 import richrail.data.*;
 import richrail.domain.TrainDao;
-import richrail.domain.WagonDao;
 import richrail.presentation.gui.*;
 
 @Configuration
@@ -65,8 +64,12 @@ public class AppConfig {
     }
 
     @Bean
-    public WagonsScene wagonsSceneV(AdministrationService service){return new WagonsScene(service);}
+    public AddWagonToTrainScene wagonsSceneV(AdministrationService service){return new AddWagonToTrainScene(service);}
 
+    @Bean
+    public AddWagonBasedOnScene addWagonBasedOnSceneV(AdministrationService service){
+        return new AddWagonBasedOnScene(service);
+    }
     @Bean
     public AddTrainScene addTrainSceneV(AdministrationService service){
         return new AddTrainScene(service);

@@ -45,10 +45,11 @@ public class Train implements Iterable<TrainWagon> {
     }
 
     public void add(TrainWagon wagon) {
-        if(train_wagons.contains(wagon)){
-            int index = train_wagons.indexOf(wagon);
-            train_wagons.get(index).setQuantity(train_wagons.get(index).getQuantity()+1);
-        }
+//        if(train_wagons.){
+//            int index = train_wagons.indexOf(wagon);
+//            train_wagons.get(index).setQuantity(train_wagons.get(index).getQuantity()+1);
+//        }
+//        wagon.setQuantity(1);
         this.train_wagons.add(wagon);
     }
 
@@ -97,16 +98,9 @@ public class Train implements Iterable<TrainWagon> {
         return id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Train train = (Train) o;
-        return Objects.equals(name, train.name) && Objects.equals(weight, train.weight);
-    }
 
     public String toString(){
-        return "Train: " + this.name + " " + this.powerSource + " " + this.train_wagons;
+        return "[Train]: " + this.name + " " + this.powerSource + " " + this.train_wagons;
     }
 
 

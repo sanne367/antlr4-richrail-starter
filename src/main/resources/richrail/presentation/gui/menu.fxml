@@ -29,7 +29,7 @@
              <Menu text="Wagons">
                  <items>
                      <MenuItem text="Show all" />
-                     <MenuItem text="Create wagon" />
+                     <MenuItem text="Create wagon" onAction="#goToAddWagonBasedOnScene" />
                      <MenuItem text="Delete wagon" />
                  </items>
              </Menu>

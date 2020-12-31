@@ -21,6 +21,11 @@ public class WelcomeScene {
         SceneManager.loadDeleteTrainScene();
     }
 
+    @FXML
+    private void goToAddWagonBasedOnScene() throws IOException{
+        SceneManager.loadAddWagonBasedOnScene();
+    }
+
 
 
 //    @FXML

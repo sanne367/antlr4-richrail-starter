@@ -20,19 +20,20 @@ public class SpringWagonDao implements WagonDao {
         return this.wagonJpaRepository.save(wagon);
     }
 
-    @Override
-    public Collection<Wagon> findByType(String type) {
-        return null;
-//                this.wagonJpaRepository.findAllWagonWithType(type);
-    }
+
 
     @Override
     public Iterable<Wagon> findAll() {
         Iterable<Wagon> allWagons = this.wagonJpaRepository.findAll();
-        for(Wagon wagon: allWagons ){
-            wagon.setWagonType(wagon.getClass().getAnnotation(DiscriminatorValue.class).value());
-        }
+//        for(Wagon wagon: allWagons ){
+//            wagon.setWagonTypeName(wagon.getClass().getAnnotation(DiscriminatorValue.class).value());
+//        }
         return allWagons;
+    }
+
+    @Override
+    public Iterable<Wagon> findAllWagonWithType() {
+        return this.wagonJpaRepository.findAllWagonWithType();
     }
 
 
