@@ -24,6 +24,10 @@ public class WagonService {
         return this.wagonDao.findAllWagonWithType();
     }
 
+    public Iterable<Wagon> getAllWagonBasedOnTYpe(){
+        return this.wagonDao.findAllWagonsBasedOnType();
+    }
 
+    public void deleteWagon(Wagon wagon){this.wagonDao.delete(wagon);}
 
 }

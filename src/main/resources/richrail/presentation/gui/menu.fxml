@@ -28,9 +28,9 @@
              </Menu>
              <Menu text="Wagons">
                  <items>
-                     <MenuItem text="Show all" />
+                     <MenuItem text="Show all" onAction="#goToWagonScene"/>
                      <MenuItem text="Create wagon" onAction="#goToAddWagonBasedOnScene" />
-                     <MenuItem text="Delete wagon" />
+                     <MenuItem text="Delete wagon" onAction="#goToDeleteWagonScene" />
                  </items>
              </Menu>
              <Menu text="Export">

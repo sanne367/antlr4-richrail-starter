@@ -3,6 +3,7 @@ package richrail.application;
 import org.springframework.transaction.annotation.Transactional;
 import richrail.domain.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,8 +21,12 @@ public class TrainService {
         train.setPowerSource(powerSource);
         return this.trainDao.save(train);
     }
-    public Train updateTrain(Train train){
-        return this.trainDao.save(train);
+    public void updateTrain(List<TrainWagon> wagons, UUID id){
+        this.trainDao.updateWagon(wagons, id);
+    }
+
+    public Train update(Train train){
+        return this.trainDao.update(train);
     }
     public Iterable<Train> getAllTrains(){
 

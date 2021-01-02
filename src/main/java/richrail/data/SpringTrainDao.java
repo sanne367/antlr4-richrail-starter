@@ -2,7 +2,9 @@ package richrail.data;
 
 import richrail.domain.Train;
 import richrail.domain.TrainDao;
+import richrail.domain.TrainWagon;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -36,4 +38,19 @@ public class SpringTrainDao implements TrainDao {
     public void deleteTrain(Train train) {
         this.trainJpaRepository.delete(train);
     }
+
+    @Override
+    public void updateWagon(List<TrainWagon> trainWagons, UUID id) {
+        this.trainJpaRepository.updateTrainWagons(trainWagons, id);
+    }
+
+    @Override
+    public Train update(Train train) {
+        return this.trainJpaRepository.save(train);
+    }
+
+//    @Override
+//    public Train update(List<TrainWagon> trainWagons) {
+//        return this.trainJpaRepository.updateTrainWagons(trainWagons);
+//    }
 }

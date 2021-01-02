@@ -1,5 +1,8 @@
 package richrail.domain;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -44,7 +47,7 @@ public class TrainWagon {
         this.wagon = wagon;
     }
 
-    // TODO: 31-12-2020 check weight & check quantity
+    // TODO: 31-12-2020 check weight & check quantity hier ipv train?
 
 
     @Override
@@ -58,7 +61,8 @@ public class TrainWagon {
             TrainWagon otherWagon = (TrainWagon) otherObject;
 
             if (this.train.equals(otherWagon.train) &&
-                    this.wagon.equals(otherWagon.wagon))
+                    this.wagon.equals(otherWagon.wagon) && this.getQuantity() == otherWagon.getQuantity()&&
+                    this.id == otherWagon.id)
                 return true;
         }
         return false;

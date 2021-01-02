@@ -2,11 +2,9 @@ package richrail.data;
 
 import richrail.domain.Train;
 import richrail.domain.TrainDao;
+import richrail.domain.TrainWagon;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class InMemoryTrainDao implements TrainDao {
     private Map<String, Train> trains = new HashMap<>();
@@ -34,5 +32,15 @@ public class InMemoryTrainDao implements TrainDao {
     @Override
     public void deleteTrain(Train train) {
 
+    }
+
+    @Override
+    public void updateWagon(List<TrainWagon> trainWagons, UUID id) {
+
+    }
+
+    @Override
+    public Train update(Train train) {
+        return null;
     }
 }

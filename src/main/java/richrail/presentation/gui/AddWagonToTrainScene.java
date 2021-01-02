@@ -2,7 +2,9 @@ package richrail.presentation.gui;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import rail.presentation.SceneManager;
 import richrail.application.AdministrationService;
 import richrail.domain.Train;
@@ -23,13 +25,24 @@ public class AddWagonToTrainScene {
     @FXML
     private ListView<Wagon> wagonsList;
 
+    @FXML
+    private TextArea messageText;
+
+    @FXML
+    private Label trainInfo;
+
     public void initialize(){
         this.loadWagons();
     }
 
     private void loadWagons(){
         System.out.println("Alle wagons printen");
+        //messageText.clear();
         this.id = this.service.getTrainId();
+        Train train = service.getTrainById(this.id);
+        trainInfo.setText("Allowed weight: " + train.getPowerSource().getMaxWeight()
+                + " Current weight: " + train.calculateWeight() + " Budget: " +
+        (train.getPowerSource().getMaxWeight() - train.calculateWeight()));
         ObservableList<Wagon> items = wagonsList.getItems();
         System.out.println(items);
         items.clear();
@@ -51,24 +64,29 @@ public class AddWagonToTrainScene {
             return;
         }
         Train train = service.getTrainById(this.id);
-        for(TrainWagon trainWagon : train.getTrain_wagons()){
-            System.out.println(trainWagon);
-            if(trainWagon.getWagon().equals(selectedWagon)) {
-                System.out.println(trainWagon);
-                trainWagon.setQuantity(trainWagon.getQuantity() + 1);
-                break;
+        if(train.checkExistenceTrainWagon(selectedWagon)){
+            if(train.addQuantity(selectedWagon)){
+                messageText.setText("Wagon quantity added to Train");
+            }
+            else{
+                messageText.setText("Failed to add wagon: allowed weight extended");
+            }
+        }else{
+            // TODO: 1-1-2021 builder opbouw logica && exceptions ipv strings
+            TrainWagon trainWagon = new TrainWagon();
+            trainWagon.setTrain(train);
+            trainWagon.setWagon(selectedWagon);
+            if(train.addNew(trainWagon)){
+                messageText.setText("New wagon added to Train");
+            }else {
+                messageText.setText("Failed to add new wagon: allowed weight extended");
             }
         }
+        if(this.service.updateTrain(train) != null){
+            messageText.setText(messageText.getText() + "\nTrain updated");
+        };
 
-//        TrainWagon trainWagon = new TrainWagon();
-//        trainWagon.setTrain(train);
-//        trainWagon.setWagon(selectedWagon);
-//        trainWagon.setQuantity(1);
-//        train.add(trainWagon);
-
-        this.service.updateTrain(train);
         loadWagons();
-        // TODO: 28-12-2020 check weight & check quantity & messagefield
     }
 
     public void backToTrainInfo() throws IOException {

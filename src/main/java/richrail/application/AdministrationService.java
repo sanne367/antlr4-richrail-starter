@@ -3,11 +3,9 @@ package richrail.application;
 import org.springframework.transaction.annotation.Transactional;
 import rail.persistence.dao.DaoProvider;
 import rail.persistence.postgresDaoImpl.PostgresDaoImplProvider;
-import richrail.domain.ElectricPowerSource;
-import richrail.domain.PowerSource;
-import richrail.domain.Train;
-import richrail.domain.Wagon;
+import richrail.domain.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,6 +35,7 @@ public class AdministrationService {
         return this.trainService.createNewTrain(name, weight, powerSource);
     }
 
+    public void deleteWagon(Wagon wagon){this.wagonService.deleteWagon(wagon);}
     public void deleteTrain(Train train){
         this.trainService.deleteTrain(train);
     }
@@ -47,7 +46,7 @@ public class AdministrationService {
 
     public PowerSource addNewPowersource(int maxWeight){
         // TODO: 30-12-2020 how to add new powersource
-        PowerSource powerSource = new ElectricPowerSource();
+        PowerSource powerSource = new WindPowerSource();
         powerSource.setMaxWeight(maxWeight);
         return this.powerSourceService.savePowersource(powerSource);
     }
@@ -59,8 +58,11 @@ public class AdministrationService {
         return this.trainService.getTrainById(id).get();
     }
 
-    public void updateTrain(Train train){
-        this.trainService.updateTrain(train);
+    public void updateTrainWagons(List<TrainWagon> wagons, UUID id){
+        this.trainService.updateTrain(wagons, id);
+    }
+    public Train updateTrain(Train train){
+        return this.trainService.update(train);
     }
 
     public Iterable<Wagon> allWagons(){
@@ -79,5 +81,8 @@ public class AdministrationService {
 
         return this.wagonService.getAllWagonTypes();
     }
+    public Iterable<Wagon> getAllWagonsBasedOnType(){
 
+        return this.wagonService.getAllWagonBasedOnTYpe();
+    }
 }

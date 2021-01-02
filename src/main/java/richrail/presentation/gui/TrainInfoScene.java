@@ -3,6 +3,7 @@ package richrail.presentation.gui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import richrail.application.AdministrationService;
 import richrail.domain.Train;
 import richrail.domain.TrainWagon;
@@ -27,6 +28,10 @@ public class TrainInfoScene {
 
     @FXML
     private Label trainInfo;
+
+
+    @FXML
+    private TextArea messageText;
 
     public UUID id;
 
@@ -55,8 +60,18 @@ public class TrainInfoScene {
             return;
         }
         Train train = service.getTrainById(this.id);
-        train.remove(selectedWagon);
-        this.service.updateTrain(train);
+        System.out.println(train.getTrain_wagons());
+        if(train.removeWagon(selectedWagon)){
+            messageText.setText("Wagon deleted from train");
+            System.out.println(train.getTrain_wagons());
+            //List<TrainWagon> newWagons = train.getTrain_wagons();
+            //this.service.updateTrainWagons(train.getTrain_wagons(), train.getId());
+            // TODO: 2-1-2021 train update list 
+            train.setTrain_wagons(train.getTrain_wagons());
+            this.service.updateTrain(train);
+        }else{
+            messageText.setText("Failed try again");
+        }
         loadTrain();
     }
 

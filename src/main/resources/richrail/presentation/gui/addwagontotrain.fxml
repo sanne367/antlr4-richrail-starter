@@ -11,6 +11,8 @@
         <fx:include source="menu.fxml" />
         <ListView fx:id="wagonsList" layoutX="28.0" layoutY="69.0" prefHeight="229.0" prefWidth="753.0" />
         <Button layoutX="28.0" layoutY="317.0" mnemonicParsing="false" onAction="#addWagonToTrain" prefHeight="31.0" prefWidth="194.0" text="Add to Train" />
-        <Button layoutX="246.0" layoutY="317.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="194.0" text="Back to train" onAction="#backToTrainInfo" />
+        <Button layoutX="246.0" layoutY="317.0" mnemonicParsing="false" onAction="#backToTrainInfo" prefHeight="31.0" prefWidth="194.0" text="Back to train" />
+      <TextArea fx:id="messageText" layoutX="514.0" layoutY="307.0" prefHeight="52.0" prefWidth="267.0" />
+      <Label layoutX="28.0" layoutY="41.0" prefHeight="21.0" prefWidth="753.0" fx:id="trainInfo" />
     </children>
 </Pane>

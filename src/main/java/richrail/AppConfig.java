@@ -71,6 +71,16 @@ public class AppConfig {
         return new AddWagonBasedOnScene(service);
     }
     @Bean
+    public DeleteWagonScene deleteWagonSceneV(AdministrationService service){
+        return new DeleteWagonScene(service);
+    }
+
+    @Bean
+    public WagonScene wagonScene(AdministrationService service){
+        return new WagonScene(service);
+    }
+    
+    @Bean
     public AddTrainScene addTrainSceneV(AdministrationService service){
         return new AddTrainScene(service);
     }

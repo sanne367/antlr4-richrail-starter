@@ -17,6 +17,7 @@ public class SceneManager {
     private static final String trainview_scene = "trainview";
     private static final String traincomponentadd_scene = "trainComponentAdd";
 
+
     private static ApplicationContext context;
     private static Scene scene;
 
@@ -45,6 +46,8 @@ public class SceneManager {
     public static void showTrainComponentAdd()throws IOException{
         scene.setRoot(loadFXML(traincomponentadd_scene));
     }
+
+
 
 
     private static Parent loadFXML(String fxml) throws IOException {

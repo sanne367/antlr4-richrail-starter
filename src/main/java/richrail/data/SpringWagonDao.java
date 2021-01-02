@@ -20,7 +20,10 @@ public class SpringWagonDao implements WagonDao {
         return this.wagonJpaRepository.save(wagon);
     }
 
-
+    @Override
+    public void delete(Wagon wagon) {
+        this.wagonJpaRepository.delete(wagon);
+    }
 
     @Override
     public Iterable<Wagon> findAll() {
@@ -34,6 +37,11 @@ public class SpringWagonDao implements WagonDao {
     @Override
     public Iterable<Wagon> findAllWagonWithType() {
         return this.wagonJpaRepository.findAllWagonWithType();
+    }
+
+    @Override
+    public Iterable<Wagon> findAllWagonsBasedOnType() {
+        return this.wagonJpaRepository.findAllWagonsBasedOnType();
     }
 
 

@@ -20,11 +20,20 @@ public class WelcomeScene {
     private void goToDeleteTrainScene() throws IOException{
         SceneManager.loadDeleteTrainScene();
     }
+    @FXML
+    private void goToDeleteWagonScene() throws IOException{
+        SceneManager.loadDeleteWagonScene();
+    }
 
     @FXML
     private void goToAddWagonBasedOnScene() throws IOException{
         SceneManager.loadAddWagonBasedOnScene();
     }
+    @FXML
+    private void goToWagonScene() throws IOException{
+        SceneManager.loadWagonsScene();
+    }
+
 
 
 

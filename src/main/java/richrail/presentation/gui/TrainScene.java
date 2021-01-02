@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import richrail.application.AdministrationService;
-import richrail.domain.Train;
+import richrail.domain.*;
 
 import java.io.IOException;
 
@@ -25,14 +25,10 @@ public class TrainScene {
     @FXML
     private Label trainInfo;
 
-    @FXML
-    private TextField nameNew;
-
-    @FXML
-    private TextField weightNew;
-
-
     public void initialize(){
+//        service.addNewPowersource(300);
+//        Wagon wagon = new CarWagon();
+//        service.addWagon(wagon);
         this.loadTrains();
     }
 
