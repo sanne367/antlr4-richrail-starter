@@ -79,7 +79,10 @@ public class AppConfig {
     public WagonScene wagonScene(AdministrationService service){
         return new WagonScene(service);
     }
-    
+    @Bean
+    public ShowTrainPictureScene showTrainPictureSceneV(AdministrationService service){
+        return new ShowTrainPictureScene(service);
+    }
     @Bean
     public AddTrainScene addTrainSceneV(AdministrationService service){
         return new AddTrainScene(service);

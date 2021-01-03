@@ -39,6 +39,8 @@ public class TrainInfoScene {
         this.loadTrain();
     }
 
+    // TODO: 3-1-2021 add messagetext 
+
     private void loadTrain(){
         System.out.println("alle treininfo printen");
         this.id = service.getTrainId();
@@ -78,5 +80,9 @@ public class TrainInfoScene {
     public void addWagonToTrain() throws IOException {
         service.setTrainId(this.id);
         SceneManager.loadWagonTrainScene();
+    }
+
+    public void goToTrainPictureView() throws IOException{
+        SceneManager.loadTrainPictureScene();
     }
 }

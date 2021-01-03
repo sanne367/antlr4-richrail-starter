@@ -26,6 +26,7 @@ public class SceneManager {
     private static final String ADDWAGONBASEDON_SCENE = "addWagonBasedOn";
     private static final String wagonList_scene = "allWagons";
     private static final String wagonDelete_scene = "deleteWagon";
+    private static final String trainPictureView_scene = "showTrainPicture";
 
     private static ApplicationContext context;
     private static Scene scene;
@@ -85,5 +86,13 @@ public class SceneManager {
     }
     public static void loadDeleteWagonScene()throws IOException{
         scene.setRoot(loadFXML(wagonDelete_scene));
+    }
+
+    public static void loadTrainPictureScene()throws IOException{
+//        URL resource = SceneManager.class.getResource(trainPictureView_scene + ".fxml");
+//        FXMLLoader fxmlLoader = new FXMLLoader(resource);
+//        Parent root = fxmlLoader.getRoot();
+//        root.
+        scene.setRoot(loadFXML(trainPictureView_scene));
     }
 }

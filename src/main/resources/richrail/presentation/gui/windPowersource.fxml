@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cee65" height="47.0" layoutX="28.0" layoutY="42.0" stroke="BLACK" strokeType="INSIDE" width="71.0" />
+      <Circle fill="#5cee65" layoutX="40.0" layoutY="95.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="DODGERBLUE" layoutX="91.0" layoutY="95.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="40.0" layoutY="55.0" text="Electric" />
+   </children>
+</Pane>
