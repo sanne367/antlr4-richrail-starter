@@ -50,6 +50,11 @@ public class SpringTrainDao implements TrainDao {
     }
 
 //    @Override
+//    public void updateTrain(Train train,UUID id) {
+//         this.trainJpaRepository.updateTrain(train, id);
+//    }
+
+//    @Override
 //    public Train update(List<TrainWagon> trainWagons) {
 //        return this.trainJpaRepository.updateTrainWagons(trainWagons);
 //    }

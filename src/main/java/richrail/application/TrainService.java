@@ -25,7 +25,11 @@ public class TrainService {
         this.trainDao.updateWagon(wagons, id);
     }
 
+//    public void updateTrain( UUID id, Train train){
+//        this.trainDao.updateTrain(train, id);
+//    }
     public Train update(Train train){
+
         return this.trainDao.update(train);
     }
     public Iterable<Train> getAllTrains(){

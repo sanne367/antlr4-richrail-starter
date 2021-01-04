@@ -65,11 +65,14 @@ public class TrainInfoScene {
         System.out.println(train.getTrain_wagons());
         if(train.removeWagon(selectedWagon)){
             messageText.setText("Wagon deleted from train");
-            System.out.println(train.getTrain_wagons());
+            System.out.println("trainwagons na remove 1 wagob" + train.getTrain_wagons());
             //List<TrainWagon> newWagons = train.getTrain_wagons();
             //this.service.updateTrainWagons(train.getTrain_wagons(), train.getId());
             // TODO: 2-1-2021 train update list 
-            train.setTrain_wagons(train.getTrain_wagons());
+            //train.setTrain_wagons(train.getTrain_wagons());
+            //tijdelijke oplossing update train werkt niet
+            //this.service.updateTrainWagons(train.getTrain_wagons(), train.getId());
+            //this.service.updateTrain(train);
             this.service.updateTrain(train);
         }else{
             messageText.setText("Failed try again");

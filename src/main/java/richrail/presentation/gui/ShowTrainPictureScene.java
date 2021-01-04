@@ -1,13 +1,17 @@
 package richrail.presentation.gui;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import richrail.application.AdministrationService;
@@ -31,6 +35,9 @@ public class ShowTrainPictureScene {
     @FXML
     private Label trainInfo;
 
+    @FXML
+    private ChoiceBox<Wagon> choiceWagon;
+
 
     @FXML
     private TextArea messageText;
@@ -46,53 +53,147 @@ public class ShowTrainPictureScene {
         this.id = service.getTrainId();
         Train train = service.getTrainById(this.id);
         System.out.println("De info komt van Trein" + train);
-        trainInfo.setText(train.getId() + ":" + train.getName() + ":" + train.getPowerSource());
-
+        trainPicture.getChildren().clear();
+        messageText.clear();
+        trainInfo.setText("[ID]:" + train.getId() + " [NAME]:" + train.getName() + " [POWERSOURCE]:"
+                + train.getPowerSource() + "\n[Allowed weight]: " + train.getPowerSource().getMaxWeight()
+                + " [Current weight]: " + train.calculateWeight() + " [Budget]: " +
+                (train.getPowerSource().getMaxWeight() - train.calculateWeight()));
         // TODO: 3-1-2021 goede manier van importen & goede manier keuze & make img clickable
+        loadTrainImages(train);
+        loadWagonsToAdd();
+
+    }
+
+    public void loadWagonsToAdd(){
+        Iterable<Wagon> allWagons = service.getAllWagonsBasedOnType();
+        if(allWagons != null){
+            ObservableList<Wagon> allItems = choiceWagon.getItems();
+            allItems.clear();
+            allWagons.iterator().forEachRemaining(allItems::add);
+        }
+    }
+    public void loadTrainImages(Train train){
         String filePath = "C:/Users/sanne/Documents/GitHub/antlr4-richrail-starter/src/main/resources/richrail/presentation/gui/";
-        String windPowersourceTrain = "windPowersource.PNG";
-        String electricPowersourceTrain = "electricPowersource.PNG";
+        String windPowersourceTrain = "wind2.PNG";
+        String electricPowersourceTrain = "electric.PNG";
         String carWagon = "car.PNG";
         String cargoWagon = "cargo.PNG";
         try{
             if(train.getPowerSource().getClass() == WindPowerSource.class){
                 String powersourceWind = filePath + windPowersourceTrain;
-                addImage(powersourceWind);
+                addPowersourceImage(powersourceWind, train.getPowerSource());
             }
             if(train.getPowerSource().getClass() == ElectricPowerSource.class){
                 String powersourceElectric = filePath + electricPowersourceTrain;
-                addImage(powersourceElectric);
+                addPowersourceImage(powersourceElectric, train.getPowerSource());
             }
             for(TrainWagon trainWagon : train.getTrain_wagons()){
                 if (trainWagon.getWagon().getClass() == CarWagon.class){
                     String carWagonWagon = filePath + carWagon;
                     int quantity = trainWagon.getQuantity();
                     for(int i = quantity; i>0 ; i--){
-                        addImage(carWagonWagon);
+                        addWagonImage(carWagonWagon, trainWagon);
                     }
                 }
                 else if (trainWagon.getWagon().getClass() == CargoWagon.class){
                     String cargoWagonWagon = filePath + cargoWagon;
                     int quantity = trainWagon.getQuantity();
                     for(int i = quantity; i>0 ; i--){
-                        addImage(cargoWagonWagon);
+                        addWagonImage(cargoWagonWagon, trainWagon);
                     }
                 }
             }
-
         }catch (Exception e){
             messageText.setText(e.toString());
         }
-
-
-
     }
 
-    public void addImage(String filePath) throws Exception{
+
+    public void addWagonImage(String filePath, TrainWagon wagon) throws Exception {
         FileInputStream inputstream = new FileInputStream(filePath);
         Image image = new Image(inputstream);
-        //ImageView imageView = new ImageView(image);
-        trainPicture.getChildren().add(new ImageView(image));
+        ImageView imageView = new ImageView(image);
+        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                messageText.setText("Current selection: " + imageView.getId()
+                        + "\nWagon: [Name]" + wagon.getWagon().getWagonTypeName());
+                System.out.println("You clicked: " + imageView.getId());
+            }
+        });
+        String idString = String.valueOf(wagon.getWagon().getId());
+        imageView.setId(idString);
+        trainPicture.getChildren().add(imageView);
+    }
+
+    public void addPowersourceImage(String filePath, PowerSource powerSource) throws Exception {
+        FileInputStream inputstream = new FileInputStream(filePath);
+        Image image = new Image(inputstream);
+        ImageView imageView = new ImageView(image);
+        imageView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                messageText.setText("Current selection: " + imageView.getId()
+                +"\nPowersource: [Name]" + powerSource.getClass().getName());
+                System.out.println("You clicked: " + imageView.getId());
+            }
+        });
+        String idString = String.valueOf(powerSource.getId());
+        imageView.setId(idString);
+        trainPicture.getChildren().add(imageView);
+    }
+
+    public void deleteWagonFromTrain(){
+        int idDelete = Integer.valueOf(messageText.getText().replaceAll("\\D+",""));
+        messageText.setText("Deleting " + idDelete);
+        Train train = service.getTrainById(this.id);
+        for(TrainWagon trainWagon : train.getTrain_wagons()){
+            if(trainWagon.getWagon().getId() == idDelete){
+                if(train.removeWagon(trainWagon)){
+                    this.service.updateTrain(train);
+                    messageText.setText("Wagon deleted from train");
+                    loadTrain();
+                }else{
+                    messageText.setText("Failed try again");
+                }
+            }
+        }
+            messageText.setText("Select wagon to delete");
+            loadTrain();
+    }
+
+    public void addWagonToTrain(){
+        Train train = service.getTrainById(this.id);
+        System.out.println("wagon toevoegen");
+        Wagon selectedWagon = this.choiceWagon
+                .getSelectionModel()
+                .getSelectedItem();
+        if (selectedWagon == null) {
+            return;
+        }
+        if(train.checkExistenceTrainWagon(selectedWagon)){
+            if(train.addQuantity(selectedWagon)){
+                messageText.setText("Wagon quantity added to Train");
+            }
+            else{
+                messageText.setText("Failed to add wagon: allowed weight extended");
+            }
+        }else{
+            // TODO: 1-1-2021 builder opbouw logica && exceptions ipv strings
+            TrainWagon trainWagon = new TrainWagon();
+            trainWagon.setTrain(train);
+            trainWagon.setWagon(selectedWagon);
+            if(train.addNew(trainWagon)){
+                messageText.setText("New wagon added to Train");
+            }else {
+                messageText.setText("Failed to add new wagon: allowed weight extended");
+            }
+        }
+        if(this.service.updateTrain(train) != null){
+            messageText.setText(messageText.getText() + "\nTrain updated");
+            loadTrain();
+        };
     }
 
     public void goBackToListView() throws IOException {

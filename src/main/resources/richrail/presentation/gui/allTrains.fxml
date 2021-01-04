@@ -5,13 +5,12 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="richrail.presentation.gui.TrainScene">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="richrail.presentation.gui.TrainScene">
    <children>
-       <fx:include source="menu.fxml"></fx:include>
+       <fx:include source="menu.fxml" />
       <ListView fx:id="trainList" layoutX="28.0" layoutY="69.0" prefHeight="229.0" prefWidth="753.0" />
       <Label fx:id="trainInfo" layoutX="28.0" layoutY="48.0" prefHeight="21.0" prefWidth="190.0" text="List of trains" />
-      <Button layoutX="28.0" layoutY="307.0" mnemonicParsing="false" text="Show train" onAction="#showTrainInfo" />
+      <Button layoutX="28.0" layoutY="307.0" mnemonicParsing="false" onAction="#showTrainInfo" text="Show train" />
+      <TextArea layoutX="479.0" layoutY="302.0" prefHeight="73.0" prefWidth="302.0" fx:id="messageText"/>
    </children>
 </Pane>

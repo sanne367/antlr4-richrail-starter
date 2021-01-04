@@ -5,12 +5,22 @@
 <?import java.lang.*?>
 <?import javafx.scene.shape.*?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5cee65" height="47.0" layoutX="28.0" layoutY="42.0" stroke="BLACK" strokeType="INSIDE" width="71.0" />
-      <Circle fill="#5cee65" layoutX="40.0" layoutY="95.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="DODGERBLUE" layoutX="91.0" layoutY="95.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label layoutX="40.0" layoutY="55.0" text="Electric" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c56433" height="47.0" layoutX="28.0" layoutY="42.0" stroke="BLACK" strokeType="INSIDE" width="71.0" />
+      <Circle fill="#c56433" layoutX="40.0" layoutY="95.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#c56433" layoutX="91.0" layoutY="95.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="40.0" layoutY="55.0" text="Cargo" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#33a3c4" height="47.0" layoutX="168.0" layoutY="42.0" stroke="BLACK" strokeType="INSIDE" width="71.0" />
+      <Label layoutX="186.0" layoutY="55.0" text="Car" />
+      <Circle fill="#33a3c4" layoutX="179.0" layoutY="89.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#33a3c4" layoutX="228.0" layoutY="89.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="47.0" layoutX="274.0" layoutY="42.0" stroke="BLACK" strokeType="INSIDE" width="71.0" />
+      <Label layoutX="292.0" layoutY="55.0" text="WInd" />
+      <Cylinder layoutX="364.0" layoutY="121.0" radius="0.77" />
+      <Ellipse fill="DODGERBLUE" layoutX="321.0" layoutY="42.0" radiusX="20.0" radiusY="14.0" stroke="BLACK" strokeType="INSIDE" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="28.0" layoutX="321.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+      <Circle fill="#33a3c4" layoutX="341.0" layoutY="89.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="DODGERBLUE" layoutX="285.0" layoutY="88.0" radius="11.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </Pane>

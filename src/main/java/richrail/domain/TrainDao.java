@@ -12,4 +12,5 @@ public interface TrainDao {
     void deleteTrain(Train train);
     void updateWagon(List<TrainWagon> trainWagons, UUID id);
     Train update(Train train);
+    //void updateTrain(Train train, UUID id);
 }

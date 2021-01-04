@@ -64,6 +64,9 @@ public class AdministrationService {
     public Train updateTrain(Train train){
         return this.trainService.update(train);
     }
+    //public void updateTrain(Train train, UUID id){
+//        this.trainService.updateTrain(id, train);
+//    }
 
     public Iterable<Wagon> allWagons(){
         return this.wagonService.getAllWagons();

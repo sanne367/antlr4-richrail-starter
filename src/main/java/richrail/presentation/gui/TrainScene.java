@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import richrail.application.AdministrationService;
 import richrail.domain.*;
@@ -21,6 +22,9 @@ public class TrainScene {
 
     @FXML
     private ListView<Train> trainList;
+
+    @FXML
+    private TextArea messageText;
 
     @FXML
     private Label trainInfo;
@@ -48,32 +52,16 @@ public class TrainScene {
         }
     }
 
-//    public void handleNew(){
-//        String name = this.nameNew
-//                .getCharacters()
-//                .toString();
-//        System.out.println(name);
-//        int weight = Integer.parseInt(this.weightNew
-//                .getCharacters()
-//                .toString());
-//        System.out.println(weight);
-//
-//        if (name.isBlank() || weight == 0) {
-//            nameNew.clear();
-//            weightNew.clear();
-//            this.loadTrains();
-//        }
-//
-//        Train train = service.addNewTrain(name, weight);
-//        System.out.println(train);
-//        this.loadTrains();
-//    }
-
     public void showTrainInfo() throws IOException {
-        Train selection = this.trainList
-                .getSelectionModel()
-                .getSelectedItem();
-        this.service.setTrainId(selection.getId());
+        try{
+            Train selection = this.trainList
+                    .getSelectionModel()
+                    .getSelectedItem();
+            this.service.setTrainId(selection.getId());
+        }catch (Exception e){
+            messageText.setText("Select Train");
+        }
+
         SceneManager.loadTrainInfoScene();
     }
 }

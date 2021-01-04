@@ -27,8 +27,14 @@ public interface TrainJpaRepository extends CrudRepository<Train, UUID> {
     @Modifying
     @Query("Update Train T SET T.train_wagons= :train_wagons where T.id =:id")
     void updateTrainWagons(
-            @Param("train_wagons") List<TrainWagon> wagons,
-            @Param("id")UUID id);
+                    @Param("train_wagons") List<TrainWagon> wagons,
+                    @Param("id")UUID id);
+//    @Transactional
+//    @Modifying
+//    @Query("update Train T SET  T.train_wagons = Train.train_wagons where T.id =:id")
+//    void updateTrain(
+//            @Param("train") Train train,
+//            @Param("id")UUID id);
     //Page<Train> findAllTrainsWithPagination(Pageable pageable);
 //
 //    @Query("SELECT t FROM Train t where t.powerSource = :power and t.weight = :weight")
