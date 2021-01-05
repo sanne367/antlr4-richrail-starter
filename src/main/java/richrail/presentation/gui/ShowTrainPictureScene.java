@@ -77,8 +77,10 @@ public class ShowTrainPictureScene {
         String filePath = "C:/Users/sanne/Documents/GitHub/antlr4-richrail-starter/src/main/resources/richrail/presentation/gui/";
         String windPowersourceTrain = "wind2.PNG";
         String electricPowersourceTrain = "electric.PNG";
+        String petroleumPowersourceTrain = "petroleum2.PNG";
         String carWagon = "car.PNG";
         String cargoWagon = "cargo.PNG";
+        String personWagon = "person.PNG";
         try{
             if(train.getPowerSource().getClass() == WindPowerSource.class){
                 String powersourceWind = filePath + windPowersourceTrain;
@@ -87,6 +89,10 @@ public class ShowTrainPictureScene {
             if(train.getPowerSource().getClass() == ElectricPowerSource.class){
                 String powersourceElectric = filePath + electricPowersourceTrain;
                 addPowersourceImage(powersourceElectric, train.getPowerSource());
+            }
+            if(train.getPowerSource().getClass() == PetroleumPowerSource.class){
+                String powersourcePetroleum = filePath + petroleumPowersourceTrain;
+                addPowersourceImage(powersourcePetroleum, train.getPowerSource());
             }
             for(TrainWagon trainWagon : train.getTrain_wagons()){
                 if (trainWagon.getWagon().getClass() == CarWagon.class){
@@ -101,6 +107,12 @@ public class ShowTrainPictureScene {
                     int quantity = trainWagon.getQuantity();
                     for(int i = quantity; i>0 ; i--){
                         addWagonImage(cargoWagonWagon, trainWagon);
+                    }
+                } else if (trainWagon.getWagon().getClass() == PersonWagon.class){
+                    String personWagonWagon = filePath + personWagon;
+                    int quantity = trainWagon.getQuantity();
+                    for(int i = quantity; i>0 ; i--){
+                        addWagonImage(personWagonWagon, trainWagon);
                     }
                 }
             }

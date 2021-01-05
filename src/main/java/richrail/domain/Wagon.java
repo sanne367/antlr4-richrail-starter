@@ -6,7 +6,6 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -14,10 +13,9 @@ import java.util.UUID;
 public abstract class Wagon {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-   // @OnDelete(action = OnDeleteAction.CASCADE)
-//    @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
+    @Column
     private String wagonTypeName;
 
     @OneToMany(orphanRemoval=true,mappedBy = "wagon" , fetch = FetchType.EAGER,cascade = CascadeType.ALL)
@@ -27,8 +25,15 @@ public abstract class Wagon {
     @Column
     private int weight;
 
+    public Wagon(){
+        this.weight = 0;
+        this.wagonTypeName = "Generic";
+    }
 
-    public Wagon(){}
+    public Wagon(int weight, String wagonTypeName){
+        this.weight = weight;
+        this.wagonTypeName = wagonTypeName;
+    }
 
     public int getWeight() {
         return weight;
@@ -53,22 +58,17 @@ public abstract class Wagon {
         this.wagonTypeName = wagonType;
     }
 
+    @Override
+    public String toString() {
+        return "[Weight]:" + this.weight + " [WagonTypeName]:" + this.wagonTypeName;
+    }
 
-    //    @Override
-//    public String toString() {
-//        return "Wagon:" + this.getClass().getAnnotation(DiscriminatorColumn.class).name();
-//    }
-
-    // TODO: 2-1-2021 equals/lijst
     @Override
     public boolean equals(Object otherObject) {
         if (otherObject instanceof Wagon) {
             Wagon otherWagon = (Wagon) otherObject;
-
-            if (
-                    getWagonTypeName().equals(otherWagon.getWagonTypeName()) &&
-                    getWeight() == ((Wagon) otherObject).getWeight())
-                return true;
+            return getWagonTypeName().equals(otherWagon.getWagonTypeName()) &&
+                    getWeight() == ((Wagon) otherObject).getWeight();
         }
         return false;
     }

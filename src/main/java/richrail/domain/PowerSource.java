@@ -12,9 +12,25 @@ public abstract class PowerSource {
     private int id;
 
     @Column
-    private int maxWeight;
+    protected int maxWeight;
 
-    public PowerSource(){}
+    @Column
+    protected String climateImpact;
+
+    public PowerSource(){};
+
+    public PowerSource(int maxWeight, String climateImpact){
+        this.maxWeight = maxWeight;
+        this.climateImpact = climateImpact;
+    }
+
+    public String getClimateImpact() {
+        return climateImpact;
+    }
+
+    public void setClimateImpact(String climateImpact) {
+        this.climateImpact = climateImpact;
+    }
 
     public int getMaxWeight() {
         return maxWeight;
@@ -30,5 +46,10 @@ public abstract class PowerSource {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "[MAXWEIGHT]:" + this.maxWeight + " [CLIMATEIMPACT]:" + this.climateImpact;
     }
 }

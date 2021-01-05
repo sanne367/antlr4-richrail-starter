@@ -12,6 +12,6 @@
         <fx:include source="menu.fxml"></fx:include>
         <ListView fx:id="wagonList" layoutX="28.0" layoutY="69.0" prefHeight="229.0" prefWidth="753.0" />
         <Label fx:id="wagonsInfo" layoutX="28.0" layoutY="48.0" prefHeight="21.0" prefWidth="190.0" text="List of wagons" />
-        <Button layoutX="28.0" layoutY="307.0" mnemonicParsing="false" text="Show wagon" onAction="#showWagonInfo" />
+        <!--<Button layoutX="28.0" layoutY="307.0" mnemonicParsing="false" text="Show wagon" onAction="#showWagonInfo" />-->
     </children>
 </Pane>

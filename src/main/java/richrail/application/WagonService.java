@@ -1,8 +1,10 @@
 package richrail.application;
 
 import org.springframework.transaction.annotation.Transactional;
+import richrail.domain.TypeBasedWagonFactory;
 import richrail.domain.Wagon;
 import richrail.domain.WagonDao;
+import richrail.domain.WagonFactory;
 
 @Transactional
 public class WagonService {
@@ -29,5 +31,6 @@ public class WagonService {
     }
 
     public void deleteWagon(Wagon wagon){this.wagonDao.delete(wagon);}
+
 
 }

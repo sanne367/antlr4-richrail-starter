@@ -44,12 +44,8 @@ public class AdministrationService {
         return this.powerSourceService.findPowersource(id);
     }
 
-    public PowerSource addNewPowersource(int maxWeight){
-        // TODO: 30-12-2020 how to add new powersource
-        PowerSource powerSource = new WindPowerSource();
-        powerSource.setMaxWeight(maxWeight);
-        return this.powerSourceService.savePowersource(powerSource);
-    }
+
+
     public Iterable<Train> allTrains(){
         return this.trainService.getAllTrains();
     }
@@ -64,9 +60,6 @@ public class AdministrationService {
     public Train updateTrain(Train train){
         return this.trainService.update(train);
     }
-    //public void updateTrain(Train train, UUID id){
-//        this.trainService.updateTrain(id, train);
-//    }
 
     public Iterable<Wagon> allWagons(){
         return this.wagonService.getAllWagons();
@@ -87,5 +80,9 @@ public class AdministrationService {
     public Iterable<Wagon> getAllWagonsBasedOnType(){
 
         return this.wagonService.getAllWagonBasedOnTYpe();
+    }
+
+    public void addPowersource(int weight){
+        this.powerSourceService.addNewPowersourceBasedOnWeight(weight);
     }
 }

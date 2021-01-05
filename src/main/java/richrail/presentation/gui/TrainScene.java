@@ -1,12 +1,10 @@
 package richrail.presentation.gui;
 
-import com.sun.javafx.iio.ios.IosDescriptor;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import richrail.application.AdministrationService;
 import richrail.domain.*;
 
@@ -30,8 +28,8 @@ public class TrainScene {
     private Label trainInfo;
 
     public void initialize(){
-//        service.addNewPowersource(300);
-//        Wagon wagon = new CarWagon();
+//        service.addPowersource(5000);
+//        Wagon wagon = new PersonWagon();
 //        service.addWagon(wagon);
         this.loadTrains();
     }
@@ -39,13 +37,9 @@ public class TrainScene {
 
     private void loadTrains(){
         System.out.println("alle treinen printen");
-
         ObservableList<Train> items = trainList.getItems();
         items.clear();
-//        Train train = service.addNewTrain("test2", 2563);
-  //      System.out.println(train);
         Iterable<Train> allTrains = service.allTrains();
-
         System.out.println(allTrains);
         if(allTrains != null){
             allTrains.forEach(items::add);

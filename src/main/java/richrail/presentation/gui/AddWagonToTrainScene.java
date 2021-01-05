@@ -46,7 +46,7 @@ public class AddWagonToTrainScene {
         ObservableList<Wagon> items = wagonsList.getItems();
         System.out.println(items);
         items.clear();
-        Iterable<Wagon> allWagons = service.allWagons();
+        Iterable<Wagon> allWagons = service.getAllWagonsBasedOnType();
         for(Wagon wagon : allWagons){
             if(wagon.getWagonTypeName() != null){
                 items.add(wagon);

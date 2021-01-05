@@ -4,6 +4,8 @@ package richrail.application;
 import org.springframework.transaction.annotation.Transactional;
 import richrail.domain.PowerSource;
 import richrail.domain.PowerSourceDao;
+import richrail.domain.PowerSourceFactory;
+import richrail.domain.WeightBasedPowerSourceFactory;
 
 import java.util.Optional;
 
@@ -23,7 +25,9 @@ public class PowerSourceService {
         return this.powerSourceDao.findAllByCompatibility(weight);
     }
 
-    public PowerSource savePowersource(PowerSource powerSource){
+    public PowerSource addNewPowersourceBasedOnWeight(int maxWeight){
+        PowerSourceFactory factory = new WeightBasedPowerSourceFactory(maxWeight);
+        PowerSource powerSource = factory.createPowerSource();
         return this.powerSourceDao.save(powerSource);
     }
 

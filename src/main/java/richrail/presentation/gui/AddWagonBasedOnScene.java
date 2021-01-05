@@ -6,10 +6,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import richrail.application.AdministrationService;
-import richrail.domain.CarWagon;
-import richrail.domain.CargoWagon;
-import richrail.domain.PowerSource;
-import richrail.domain.Wagon;
+import richrail.domain.*;
 
 import javax.persistence.DiscriminatorValue;
 
@@ -52,7 +49,6 @@ public class AddWagonBasedOnScene {
     }
 
     public void createNewWagon(){
-        // TODO: 31-12-2020 dynamic input fields by type
         try{
             Wagon wagon = choiceWagonType.getSelectionModel().getSelectedItem();
             int wagonWeight = Integer.parseInt(this.inputWeightWagon
@@ -65,19 +61,9 @@ public class AddWagonBasedOnScene {
                     .getCharacters()
                     .toString();
             // TODO: 2-1-2021 how to make it open closed
-            Wagon newWagon = null;
-            if(wagon.getClass() == CargoWagon.class){
-                newWagon = new CargoWagon();
-                newWagon.setWagonTypeName(wagonName);
-                newWagon.setWeight(wagonWeight);
-                ((CargoWagon) newWagon).setNameOfGoods(wagonGoods);
-
-            }if(wagon.getClass() == CarWagon.class){
-                newWagon = new CarWagon();
-                newWagon.setWagonTypeName(wagonName);
-                newWagon.setWeight(wagonWeight);
-                ((CarWagon) newWagon).setNameOfGoods(wagonGoods);
-            } if(service.addWagon(newWagon) != null){
+            WagonFactory wagonFactory = new TypeBasedWagonFactory(wagon, wagonGoods, wagonWeight, wagonName);
+            Wagon newWagon = wagonFactory.createWagon();
+            if(service.addWagon(newWagon) != null){
                 messageText.setText("Wagon created");
                 inputNameOfGoods.clear();
                 inputNameWagon.clear();
@@ -92,7 +78,20 @@ public class AddWagonBasedOnScene {
             messageText.setText("Try again");
         }
 
-    }
+//            Wagon newWagon = null;
+//            if(wagon.getClass() == CargoWagon.class){
+//                newWagon = new CargoWagon();
+//                newWagon.setWagonTypeName(wagonName);
+//                newWagon.setWeight(wagonWeight);
+//                ((CargoWagon) newWagon).setNameOfGoods(wagonGoods);
+//
+//            }if(wagon.getClass() == CarWagon.class){
+//                newWagon = new CarWagon();
+//                newWagon.setWagonTypeName(wagonName);
+//                newWagon.setWeight(wagonWeight);
+//                ((CarWagon) newWagon).setNameOfGoods(wagonGoods);
+            }
+
 
 
 }

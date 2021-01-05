@@ -75,7 +75,6 @@ public class Train implements Iterable<TrainWagon> {
     }
 
     public boolean removeWagon(TrainWagon wagon) {
-        // TODO: 1-1-2021 iterator gebruiken
         Iterator<TrainWagon> wagons = train_wagons.iterator();
         while (wagons.hasNext()) {
             TrainWagon trainWagon = wagons.next();
@@ -92,50 +91,6 @@ public class Train implements Iterable<TrainWagon> {
         }
         return false;
     }
-
-
-
-//
-//        System.out.println("wagon to delete" + wagon.getWagon().getId() + wagon.getTrain().id);
-//        TrainWagon wagonToDelete = null;
-//        for(TrainWagon trainWagon : this.train_wagons) {
-//            //int index = train_wagons.indexOf(trainWagon);
-//            System.out.println("wagon list" + trainWagon.getWagon().getId() + trainWagon.getTrain().id);
-//            if (trainWagon.getWagon().equals(wagon.getWagon())) {
-//                System.out.println("equals werkt");
-//                if (trainWagon.getQuantity() >= 2) {
-//                    System.out.println(trainWagon.getQuantity());
-//                    trainWagon.setQuantity(trainWagon.getQuantity() - 1);
-//                    return true;
-//                } else if (trainWagon.getQuantity() == 1) {
-//
-//                    System.out.println("heoejoeje");
-//                    wagonToDelete = trainWagon;
-//                }
-//            }
-//        }
-//        for(TrainWagon trainWagon : train_wagons){
-//            System.out.println(trainWagon.equals(wagonToDelete));
-//        }
-//        return train_wagons.remove(wagonToDelete);
-//        //return false;
-//
-//    }
-
-//        public boolean re
-////        return train_wagons.remove(wagonToRemove);
-////    }moveFromList(){
-//
-//    public boolean removeFromList(TrainWagon wagon){
-//        for(Iterator<TrainWagon> iterator = train_wagons.iterator(); iterator.hasNext();){
-//            TrainWagon element = iterator.next();
-//            if(element.equals(wagon)){
-//                iterator.remove();
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
     private boolean checkWeightAllowed(Wagon wagon){
         System.out.println(this.powerSource.getMaxWeight());
@@ -201,9 +156,7 @@ public class Train implements Iterable<TrainWagon> {
     public boolean equals(Object otherObject) {
         if (otherObject instanceof Train) {
             Train otherTrain = (Train) otherObject;
-
-            if (this.id.equals(otherTrain.id))
-                return true;
+            return this.id.equals(otherTrain.id);
         }
         return false;
     }

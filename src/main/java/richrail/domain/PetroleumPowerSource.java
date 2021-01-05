@@ -4,11 +4,12 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("electric")
-public class ElectricPowerSource extends PowerSource{
+@DiscriminatorValue("petroleum")
+public class PetroleumPowerSource extends PowerSource {
 
-    public ElectricPowerSource(){
-        super(4000, "medium");
+    // TODO: 5-1-2021 hoezo kunnen de powersources constructor private zijn
+    public PetroleumPowerSource(){
+        super(10000, "high");
     }
 
     @Override
@@ -16,4 +17,5 @@ public class ElectricPowerSource extends PowerSource{
         return "[Powersource] " + this.getClass().getAnnotation(DiscriminatorValue.class).value()
                 + super.toString();
     }
+
 }

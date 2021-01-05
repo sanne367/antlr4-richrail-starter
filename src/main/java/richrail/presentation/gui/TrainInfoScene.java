@@ -39,7 +39,6 @@ public class TrainInfoScene {
         this.loadTrain();
     }
 
-    // TODO: 3-1-2021 add messagetext 
 
     private void loadTrain(){
         System.out.println("alle treininfo printen");

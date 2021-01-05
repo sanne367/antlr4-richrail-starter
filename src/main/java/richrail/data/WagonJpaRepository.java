@@ -13,10 +13,10 @@ public interface WagonJpaRepository extends CrudRepository<Wagon, Integer> {
 //    @Query("SELECT distinct TYPE(W) FROM Wagon W WHERE TYPE(W) is not null")
 //    Iterable<Wagon> findAllWagonWithType();
 
-    @Query("SELECT distinct W FROM Wagon W WHERE TYPE(W) is not null and W.weight = 0")
+    @Query("SELECT distinct W FROM Wagon W WHERE W.wagonTypeName = 'Generic'")
     Iterable<Wagon> findAllWagonWithType();
 
-    @Query("SELECT W FROM Wagon W WHERE wagonTypeName is not null")
+    @Query("SELECT W FROM Wagon W WHERE W.wagonTypeName not like 'Generic'")
     Iterable<Wagon> findAllWagonsBasedOnType();
     //
 //    @Query("SELECT t FROM Train t where t.powerSource = :power and t.weight = :weight")
