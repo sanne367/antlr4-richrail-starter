@@ -33,7 +33,7 @@
                      <MenuItem text="Delete wagon" onAction="#goToDeleteWagonScene" />
                  </items>
              </Menu>
-             <Menu text="Export">
+             <Menu text="Export" onAction="#openLog">
                  <items>
                      <MenuItem text="Logs" />
                  </items>

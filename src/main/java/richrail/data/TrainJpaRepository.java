@@ -23,12 +23,12 @@ public interface TrainJpaRepository extends CrudRepository<Train, UUID> {
 //    @Query("SELECT t FROM Train t WHERE t.wagons is not empty")
 //    Collection<Train> findAllTrainsWithWagons();
 //
-    @Transactional
-    @Modifying
-    @Query("Update Train T SET T.train_wagons= :train_wagons where T.id =:id")
-    void updateTrainWagons(
-                    @Param("train_wagons") List<TrainWagon> wagons,
-                    @Param("id")UUID id);
+//    @Transactional
+//    @Modifying
+//    @Query("//Update Train T SET T.train_wagons= :train_wagons where T.id =:id")
+//    void updateTrainWagons(
+//                    @Param("train_wagons") List<TrainWagon> wagons,
+//                    @Param("id")UUID id);
 //    @Transactional
 //    @Modifying
 //    @Query("update Train T SET  T.train_wagons = Train.train_wagons where T.id =:id")

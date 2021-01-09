@@ -10,17 +10,14 @@ import richrail.domain.Train;
 import richrail.domain.Wagon;
 
 public class DeleteWagonScene {
-    private AdministrationService service;
+    private GuiWagonService service;
 
-    public DeleteWagonScene(AdministrationService service) {
+    public DeleteWagonScene(GuiWagonService service) {
         this.service = service;
     }
 
     @FXML
     private ListView<Wagon> wagonList;
-
-    @FXML
-    private Label wagonInfo;
 
     @FXML
     private TextArea messageText;
@@ -31,30 +28,17 @@ public class DeleteWagonScene {
     private void loadWagonsToDelete(){
         System.out.println("Print all wagons");
         messageText.setText("Warning: wagon will be deleted from all trains");
-
-        ObservableList<Wagon> items = wagonList.getItems();
-        items.clear();
-        Iterable<Wagon> allWagons = service.getAllWagonsBasedOnType();
-
-        if(allWagons != null){
-            allWagons.forEach(items::add);
-        }
-
+        service.loadWagonsBasedOnToAdd(wagonList);
     }
 
     public void deleteWagon(){
         System.out.println("Wagon verwijderen");
-        Wagon wagon = this.wagonList.getSelectionModel().getSelectedItem();
-        if(wagon == null){
-            return;
-        }
         try{
-            // TODO: 2-1-2021 delete wagon + records in one
-            service.deleteWagon(wagon);
+            service.deleteWagon(this.wagonList.getSelectionModel().getSelectedItem());
             messageText.setText("Wagon deleted");
             loadWagonsToDelete();
         }catch (Exception e){
-            messageText.setText("Failed, try again");
+            messageText.setText("Failed, try again" + e.getMessage());
         }
 
     }

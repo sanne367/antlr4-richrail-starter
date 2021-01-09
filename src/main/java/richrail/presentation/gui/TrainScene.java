@@ -1,6 +1,5 @@
 package richrail.presentation.gui;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -12,10 +11,12 @@ import java.io.IOException;
 
 
 public class TrainScene {
+    private GuiTrainService guiTrainService;
     private AdministrationService service;
 
-    public TrainScene(AdministrationService service) {
-        this.service = service;
+    public TrainScene(GuiTrainService service, AdministrationService service2) {
+        this.service = service2;
+        this.guiTrainService = service;
     }
 
     @FXML
@@ -24,38 +25,36 @@ public class TrainScene {
     @FXML
     private TextArea messageText;
 
-    @FXML
-    private Label trainInfo;
-
     public void initialize(){
-//        service.addPowersource(5000);
-//        Wagon wagon = new PersonWagon();
-//        service.addWagon(wagon);
-        this.loadTrains();
+        //addGenericDataToDatabase();
+        this.guiTrainService.loadTrainList(this.trainList);
     }
 
-
-    private void loadTrains(){
-        System.out.println("alle treinen printen");
-        ObservableList<Train> items = trainList.getItems();
-        items.clear();
-        Iterable<Train> allTrains = service.allTrains();
-        System.out.println(allTrains);
-        if(allTrains != null){
-            allTrains.forEach(items::add);
-        }
+    public void addGenericDataToDatabase(){
+        this.service.addPowersource(40);
+        this.service.addPowersource(2000);
+        this.service.addPowersource(10000);
+        Wagon wagon1 = new PersonWagon();
+        Wagon wagon2 = new CarWagon();
+        Wagon wagon3 = new CargoWagon();
+        this.service.addWagon(wagon1);
+        this.service.addWagon(wagon2);
+        this.service.addWagon(wagon3);
     }
 
     public void showTrainInfo() throws IOException {
-        try{
-            Train selection = this.trainList
-                    .getSelectionModel()
-                    .getSelectedItem();
-            this.service.setTrainId(selection.getId());
+       this.guiTrainService.showTrainInfo(trainList, messageText);
+    }
+
+    public void duplicateTrain() throws CloneNotSupportedException{
+        try {
+            this.guiTrainService.copyTrain(trainList.getSelectionModel().getSelectedItem());
+            messageText.setText("Train duplicated");
+            this.guiTrainService.loadTrainList(this.trainList);
         }catch (Exception e){
-            messageText.setText("Select Train");
+            messageText.setText(e.getMessage());
         }
 
-        SceneManager.loadTrainInfoScene();
     }
+
 }

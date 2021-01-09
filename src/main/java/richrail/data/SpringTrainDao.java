@@ -39,10 +39,10 @@ public class SpringTrainDao implements TrainDao {
         this.trainJpaRepository.delete(train);
     }
 
-    @Override
-    public void updateWagon(List<TrainWagon> trainWagons, UUID id) {
-        this.trainJpaRepository.updateTrainWagons(trainWagons, id);
-    }
+//    @Override
+//    public void updateWagon(List<TrainWagon> trainWagons, UUID id) {
+//        this.trainJpaRepository.updateTrainWagons(trainWagons, id);
+//    }
 
     @Override
     public Train update(Train train) {

@@ -3,13 +3,14 @@ package richrail.domain;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import richrail.domain.exception.WeightNotAllowed;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
 @Table(name = "Train")
-public class Train implements Iterable<TrainWagon> {
+public class Train implements Iterable<TrainWagon>, Cloneable {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -30,93 +31,85 @@ public class Train implements Iterable<TrainWagon> {
 
     @OneToMany(orphanRemoval=true,mappedBy = "train" , fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<TrainWagon> train_wagons = new ArrayList<>();
+    private List<TrainWagon> trainWagons = new ArrayList<>();
 
     public Train(){};
+
     public Train(String name){
         this.name = name;
     }
+
     public Train(String name, int weight) {
         this.name = name;
         this.weight = weight;
     }
 
-    public Train(String name, List<TrainWagon> train_wagons) {
+    public Train(String name, List<TrainWagon> trainWagons) {
         this.name = name;
-        this.train_wagons = train_wagons;
+        this.trainWagons = trainWagons;
     }
 
-    public void setTrain_wagons(List<TrainWagon> train_wagons) {
-        this.train_wagons = train_wagons;
+    public void setTrainWagons(List<TrainWagon> trainWagons) {
+        this.trainWagons = trainWagons;
     }
 
-    // TODO: 1-1-2021 single responsibility principe wat betreft wagons/train,wagons
-    public boolean addNew(TrainWagon wagon) {
+    public void addNew(TrainWagon wagon) {
         System.out.println(checkWeightAllowed(wagon.getWagon()));
-        if(checkWeightAllowed(wagon.getWagon())){
-            wagon.setQuantity(1);
-            this.train_wagons.add(wagon);
-            return true;
+        if(!checkWeightAllowed(wagon.getWagon())) {
+            throw new WeightNotAllowed("Not allowed, weight extended");
         }
-        return false;
+        wagon.setQuantity(1);
+        this.trainWagons.add(wagon);
     }
 
-    public boolean addQuantity(Wagon wagon){
+    //next project: different approach quantity
+    public void addQuantity(Wagon wagon){
         System.out.println(checkWeightAllowed(wagon));
-        if(checkWeightAllowed(wagon)){
-            for (TrainWagon trainWagon : train_wagons) {
-                if (trainWagon.getWagon().equals(wagon)) {
-                    trainWagon.setQuantity(trainWagon.getQuantity() + 1);
-                    return true;
-                }
+        if(!checkWeightAllowed(wagon)) {
+            throw new WeightNotAllowed("Not allowed, weight extended");
+        }
+        for (TrainWagon trainWagon : trainWagons) {
+            if (trainWagon.getWagon().equals(wagon)) {
+                trainWagon.setQuantity(trainWagon.getQuantity() + 1);
             }
         }
-        return false;
     }
 
-    public boolean removeWagon(TrainWagon wagon) {
-        Iterator<TrainWagon> wagons = train_wagons.iterator();
+    public void removeWagon(TrainWagon wagon) {
+        Iterator<TrainWagon> wagons = trainWagons.iterator();
         while (wagons.hasNext()) {
             TrainWagon trainWagon = wagons.next();
             if (trainWagon.getWagon().equals(wagon.getWagon())) {
-                if (trainWagon.getQuantity() == 1) {
-                    wagons.remove();
-                    return true;
+                if(trainWagon.getQuantity() == 1){
+                    trainWagon.setQuantity(0);
                 }
-                if (trainWagon.getQuantity() >= 2) {
-                    trainWagon.setQuantity(trainWagon.getQuantity() - 1);
-                    return true;
+                else {
+                    trainWagon.setQuantity(trainWagon.getQuantity() -1);
                 }
+                //wagons.remove();
             }
         }
-        return false;
     }
 
-    private boolean checkWeightAllowed(Wagon wagon){
+    private boolean checkWeightAllowed(Wagon wagon) {
         System.out.println(this.powerSource.getMaxWeight());
         System.out.println(calculateWeight() + wagon.getWeight());
         return calculateWeight() + wagon.getWeight() <= this.powerSource.getMaxWeight();
     }
 
     public int calculateWeight(){
-        int weightTrain = this.weight;
-        int weightTotal = 0;
-        for(TrainWagon wagon : train_wagons){
+        int weightTotal = this.weight;
+        for(TrainWagon wagon : trainWagons){
            int wagonWeight =  wagon.getWagon().getWeight();
            int quantity = wagon.getQuantity();
-           int totalWagon = wagonWeight * quantity;
-           weightTotal += totalWagon;
+           weightTotal += wagonWeight * quantity;
         }
-        weightTotal += weightTrain;
         return weightTotal;
     }
 
     public boolean checkExistenceTrainWagon(Wagon wagon){
-        for(TrainWagon trainWagon : this.train_wagons){
-            if(trainWagon.getWagon().equals(wagon)){
-                return true;
-            }
-        }
+        for(TrainWagon trainWagon : this.trainWagons)
+            if (trainWagon.getWagon().equals(wagon)) return true;
         return false;
     }
 
@@ -124,13 +117,17 @@ public class Train implements Iterable<TrainWagon> {
         return name;
     }
 
-    @Override
-    public Iterator<TrainWagon> iterator() {
-        return this.train_wagons.iterator();
+    public void setId(UUID id) {
+        this.id = id;
     }
 
-    public List<TrainWagon> getTrain_wagons() {
-        return train_wagons;
+    @Override
+    public Iterator<TrainWagon> iterator() {
+        return this.trainWagons.iterator();
+    }
+
+    public List<TrainWagon> getTrainWagons() {
+        return trainWagons;
     }
 
 
@@ -146,11 +143,14 @@ public class Train implements Iterable<TrainWagon> {
         return id;
     }
 
-
     public String toString(){
-        return "[Train]: " + this.name + "[id] " + this.id + " " + this.powerSource + " " + this.train_wagons;
+        return "[Train]: " + this.name + "[id] " + this.id + " " + this.powerSource + " " + this.trainWagons;
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     @Override
     public boolean equals(Object otherObject) {

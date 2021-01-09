@@ -39,7 +39,7 @@ public class CargoWagon extends Wagon {
     public boolean equals(Object otherObject) {
         if (otherObject instanceof CargoWagon) {
             CargoWagon otherWagon = (CargoWagon) otherObject;
-            super.getId().equals(((CargoWagon) otherObject).getId());
+            return super.getId().equals(((CargoWagon) otherObject).getId());
         }
         return false;
     }

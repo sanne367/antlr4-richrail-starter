@@ -21,9 +21,9 @@ public class TrainService {
         train.setPowerSource(powerSource);
         return this.trainDao.save(train);
     }
-    public void updateTrain(List<TrainWagon> wagons, UUID id){
-        this.trainDao.updateWagon(wagons, id);
-    }
+//    public void updateTrain(List<TrainWagon> wagons, UUID id){
+//        this.trainDao.updateWagon(wagons, id);
+//    }
 
 //    public void updateTrain( UUID id, Train train){
 //        this.trainDao.updateTrain(train, id);
@@ -38,6 +38,14 @@ public class TrainService {
 //            System.out.println("treinrepos" + t);
 //        }
         return this.trainDao.findAll();
+    }
+
+    public void duplicateTrain(Train train) throws CloneNotSupportedException{
+        System.out.println("trein om te copy" + train);
+        Train train1 = (Train)train.clone();
+        train1.setId(UUID.randomUUID());
+        System.out.println("trein copy" + train1);
+        this.trainDao.save(train1);
     }
 
     public void deleteTrain(Train train){

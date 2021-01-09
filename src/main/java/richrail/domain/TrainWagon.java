@@ -6,7 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 
 @Entity
-public class TrainWagon {
+public class TrainWagon implements Cloneable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -47,12 +47,22 @@ public class TrainWagon {
         this.wagon = wagon;
     }
 
-    // TODO: 31-12-2020 check weight & check quantity hier ipv train?
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
+    public Integer getId() {
+        return id;
+    }
 
     @Override
     public String toString() {
         return quantity + " : " + wagon;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
     }
 
     @Override

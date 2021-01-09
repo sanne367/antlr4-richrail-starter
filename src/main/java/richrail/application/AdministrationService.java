@@ -1,5 +1,7 @@
 package richrail.application;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 import rail.persistence.dao.DaoProvider;
 import rail.persistence.postgresDaoImpl.PostgresDaoImplProvider;
@@ -15,6 +17,7 @@ public class AdministrationService {
     private final TrainService trainService;
     private final WagonService wagonService;
     private final PowerSourceService powerSourceService;
+    private static final Logger logger = LoggerFactory.getLogger(AdministrationService.class);
     public static UUID trainId;
 
     public void setTrainId(UUID trainId) {
@@ -44,7 +47,9 @@ public class AdministrationService {
         return this.powerSourceService.findPowersource(id);
     }
 
-
+    public void duplicateTrain(Train train) throws CloneNotSupportedException{
+        this.trainService.duplicateTrain(train);
+    }
 
     public Iterable<Train> allTrains(){
         return this.trainService.getAllTrains();
@@ -54,9 +59,9 @@ public class AdministrationService {
         return this.trainService.getTrainById(id).get();
     }
 
-    public void updateTrainWagons(List<TrainWagon> wagons, UUID id){
-        this.trainService.updateTrain(wagons, id);
-    }
+//    public void updateTrainWagons(List<TrainWagon> wagons, UUID id){
+//        this.trainService.updateTrain(wagons, id);
+//    }
     public Train updateTrain(Train train){
         return this.trainService.update(train);
     }
@@ -84,5 +89,9 @@ public class AdministrationService {
 
     public void addPowersource(int weight){
         this.powerSourceService.addNewPowersourceBasedOnWeight(weight);
+    }
+
+    public Logger getLogger(){
+        return logger;
     }
 }

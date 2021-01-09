@@ -10,7 +10,8 @@
        <fx:include source="menu.fxml" />
       <ListView fx:id="trainList" layoutX="28.0" layoutY="69.0" prefHeight="229.0" prefWidth="753.0" />
       <Label fx:id="trainInfo" layoutX="28.0" layoutY="48.0" prefHeight="21.0" prefWidth="190.0" text="List of trains" />
-      <Button layoutX="28.0" layoutY="307.0" mnemonicParsing="false" onAction="#showTrainInfo" text="Show train" />
-      <TextArea layoutX="479.0" layoutY="302.0" prefHeight="73.0" prefWidth="302.0" fx:id="messageText"/>
+      <Button layoutX="28.0" layoutY="307.0" mnemonicParsing="false" onAction="#showTrainInfo" prefHeight="31.0" prefWidth="125.0" text="Show train" />
+      <TextArea fx:id="messageText" layoutX="479.0" layoutY="302.0" prefHeight="73.0" prefWidth="302.0" />
+      <Button layoutX="164.0" layoutY="307.0" mnemonicParsing="false" onAction="#duplicateTrain" prefHeight="31.0" prefWidth="125.0" text="Copy train" />
    </children>
 </Pane>

@@ -10,9 +10,9 @@ import richrail.application.AdministrationService;
 import richrail.domain.Train;
 
 public class DeleteTrainScene {
-    private AdministrationService service;
+    private GuiTrainService service;
 
-    public DeleteTrainScene(AdministrationService service) {
+    public DeleteTrainScene(GuiTrainService service) {
         this.service = service;
     }
 
@@ -23,33 +23,22 @@ public class DeleteTrainScene {
     private TextArea messageText;
 
     public void initialize(){
-        this.loadTrainsToDelete();
+        loadTrainsToDelete();
     }
 
 
     private void loadTrainsToDelete(){
-        System.out.println("alle treinen printen");
-        ObservableList<Train> items = trainList.getItems();
-        items.clear();
-        Iterable<Train> allTrains = service.allTrains();
-        System.out.println(allTrains);
-        if(allTrains != null){
-            allTrains.forEach(items::add);
-        }
+        this.service.loadTrainList(trainList);
     }
 
     public void deleteTrain(){
         System.out.println("Trein verwijderen");
-        Train train = this.trainList.getSelectionModel().getSelectedItem();
-        if(train == null){
-            return;
-        }
         try{
-            service.deleteTrain(train);
+            service.deleteTrain(this.trainList.getSelectionModel().getSelectedItem());
             messageText.setText("Train deleted");
             loadTrainsToDelete();
         }catch (Exception e){
-            messageText.setText("Failed, try again");
+            messageText.setText("Failed, try again" + e.getMessage());
         }
 
     }

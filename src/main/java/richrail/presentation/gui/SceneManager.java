@@ -68,7 +68,7 @@ public class SceneManager {
     public static void loadWagonTrainScene() throws IOException{
         scene.setRoot(loadFXML(WAGONADDTRAIN_SCENE));
     }
-    // TODO: 27-12-2020 log bijhouden & export
+
 
     public static void loadAddTrainScene() throws IOException{
         scene.setRoot(loadFXML(ADDTRAIN_SCENE));

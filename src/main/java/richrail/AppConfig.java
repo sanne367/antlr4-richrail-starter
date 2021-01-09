@@ -21,9 +21,25 @@ public class AppConfig {
         return new WelcomeScene();
     }
 
+//    @Bean
+//    public TrainScene trainSceneView(AdministrationService service) {
+//        return new TrainScene(service);
+//    }
     @Bean
-    public TrainScene trainSceneView(AdministrationService service) {
-        return new TrainScene(service);
+    public GuiPowerSourceService guiPowerSourceServiceV(AdministrationService service) {
+        return new GuiPowerSourceService(service);
+    }
+    @Bean
+    public GuiWagonService guiWagonServiceV(AdministrationService service) {
+    return new GuiWagonService(service);
+}
+    @Bean
+    public GuiTrainService guiTrainServiceV(AdministrationService service) {
+        return new GuiTrainService(service);
+    }
+    @Bean
+    public TrainScene trainSceneView(GuiTrainService service, AdministrationService service2) {
+        return new TrainScene(service, service2);
     }
 
     @Bean
@@ -58,37 +74,43 @@ public class AppConfig {
         return new InMemoryTrainDao();
     }
 
+//    @Bean
+//    public TrainInfoScene trainInfoSceneV(AdministrationService service){
+//
+//        return new TrainInfoScene(service);
+//    }
     @Bean
-    public TrainInfoScene trainInfoSceneV(AdministrationService service){
-        return new TrainInfoScene(service);
+    public TrainInfoScene trainInfoSceneV(GuiTrainService service, GuiWagonService wagonService){
+
+        return new TrainInfoScene(service, wagonService);
     }
 
     @Bean
-    public AddWagonToTrainScene wagonsSceneV(AdministrationService service){return new AddWagonToTrainScene(service);}
+    public AddWagonToTrainScene wagonsSceneV(GuiWagonService service, GuiTrainService service1){return new AddWagonToTrainScene(service1, service);}
 
     @Bean
-    public AddWagonBasedOnScene addWagonBasedOnSceneV(AdministrationService service){
+    public AddWagonBasedOnScene addWagonBasedOnSceneV(GuiWagonService service){
         return new AddWagonBasedOnScene(service);
     }
     @Bean
-    public DeleteWagonScene deleteWagonSceneV(AdministrationService service){
+    public DeleteWagonScene deleteWagonSceneV(GuiWagonService service){
         return new DeleteWagonScene(service);
     }
 
     @Bean
-    public WagonScene wagonScene(AdministrationService service){
+    public WagonScene wagonScene(GuiWagonService service){
         return new WagonScene(service);
     }
     @Bean
-    public ShowTrainPictureScene showTrainPictureSceneV(AdministrationService service){
-        return new ShowTrainPictureScene(service);
+    public ShowTrainPictureScene showTrainPictureSceneV(GuiWagonService service, GuiTrainService service1){
+        return new ShowTrainPictureScene(service1, service);
     }
     @Bean
-    public AddTrainScene addTrainSceneV(AdministrationService service){
-        return new AddTrainScene(service);
+    public AddTrainScene addTrainSceneV(GuiTrainService service, GuiPowerSourceService sourceService){
+        return new AddTrainScene(service, sourceService);
     }
     @Bean
-    public DeleteTrainScene deleteTrainSceneV(AdministrationService service){
+    public DeleteTrainScene deleteTrainSceneV(GuiTrainService service){
         return new DeleteTrainScene(service);
     }
     @Bean

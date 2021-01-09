@@ -1,9 +1,14 @@
 package richrail.presentation.gui;
 
-import javafx.event.ActionEvent;
+import javafx.application.HostServices;
+import javafx.application.HostServices.*;
+
 import javafx.fxml.FXML;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 
 public class WelcomeScene {
     @FXML
@@ -34,11 +39,15 @@ public class WelcomeScene {
         SceneManager.loadWagonsScene();
     }
 
+    public void openLog() throws IOException{
+        File file = new File("C:\\Users\\sanne\\Documents\\GitHub\\antlr4-richrail-starter\\test.log");
+        URI uri = file.toURI();
+        if (Desktop.isDesktopSupported()){
+            Desktop desktop = Desktop.getDesktop();
+            if (desktop.isSupported(Desktop.Action.BROWSE)){
+                desktop.browse(uri);
+            }
+        }
+    }
 
-
-
-//    @FXML
-//    private void goToTrainInfoScene() throws IOException {
-//        SceneManager.loadTrainInfoScene();
-//    }
 }
