@@ -1672,3 +1672,62 @@
 154162 [JavaFX Application Thread] INFO  r.application.AdministrationService - All trains
 155534 [JavaFX Application Thread] INFO  r.application.AdministrationService - All trains
 157234 [JavaFX Application Thread] INFO  r.application.AdministrationService - All trains
+365  [JavaFX Application Thread] INFO  richrail.TrainApplication - Example log richrail.TrainApplication
+1803 [JavaFX Application Thread] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2002 [JavaFX Application Thread] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 185ms. Found 3 JPA repository interfaces.
+2797 [JavaFX Application Thread] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2862 [JavaFX Application Thread] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.20.Final
+3054 [JavaFX Application Thread] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+3467 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+4409 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+4465 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+9117 [JavaFX Application Thread] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.18.Final
+10673 [JavaFX Application Thread] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+10718 [JavaFX Application Thread] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+67220 [JavaFX Application Thread] INFO  r.application.AdministrationService - All trains
+71708 [JavaFX Application Thread] INFO  r.application.AdministrationService - All trains
+91905 [JavaFX Application Thread] INFO  r.application.AdministrationService - Show train info
+91970 [JavaFX Application Thread] INFO  r.application.AdministrationService - Show train info[Train]: test[id] b4437326-9fd4-4920-9e4c-da89eefa5f67 [Powersource] electric[MAXWEIGHT]:4000 [CLIMATEIMPACT]:medium []
+91995 [JavaFX Application Thread] INFO  r.application.AdministrationService - All wagons from train[Train]: test[id] b4437326-9fd4-4920-9e4c-da89eefa5f67 [Powersource] electric[MAXWEIGHT]:4000 [CLIMATEIMPACT]:medium []
+348  [JavaFX Application Thread] INFO  richrail.TrainApplication - Example log richrail.TrainApplication
+1946 [JavaFX Application Thread] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2068 [JavaFX Application Thread] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 108ms. Found 3 JPA repository interfaces.
+2945 [JavaFX Application Thread] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+3023 [JavaFX Application Thread] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.20.Final
+3203 [JavaFX Application Thread] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+3579 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+4466 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+4533 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+9235 [JavaFX Application Thread] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.18.Final
+10935 [JavaFX Application Thread] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+10951 [JavaFX Application Thread] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21364 [JavaFX Application Thread] INFO  r.application.AdministrationService - All trains
+33070 [JavaFX Application Thread] INFO  r.application.AdministrationService - All trains
+400  [JavaFX Application Thread] INFO  richrail.TrainApplication - Example log richrail.TrainApplication
+1916 [JavaFX Application Thread] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2046 [JavaFX Application Thread] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 117ms. Found 3 JPA repository interfaces.
+2990 [JavaFX Application Thread] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+3075 [JavaFX Application Thread] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.20.Final
+3300 [JavaFX Application Thread] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+3845 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+4588 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+4660 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+9045 [JavaFX Application Thread] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.18.Final
+10682 [JavaFX Application Thread] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+10701 [JavaFX Application Thread] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21942 [JavaFX Application Thread] INFO  r.application.AdministrationService - All trains
+25567 [JavaFX Application Thread] INFO  r.application.AdministrationService - All trains
+289  [JavaFX Application Thread] INFO  richrail.TrainApplication - Example log richrail.TrainApplication
+1770 [JavaFX Application Thread] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+1925 [JavaFX Application Thread] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 142ms. Found 3 JPA repository interfaces.
+2834 [JavaFX Application Thread] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2896 [JavaFX Application Thread] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.20.Final
+3062 [JavaFX Application Thread] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+3593 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+4428 [JavaFX Application Thread] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+4510 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+9110 [JavaFX Application Thread] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 6.0.18.Final
+10817 [JavaFX Application Thread] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+10832 [JavaFX Application Thread] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+25840 [JavaFX Application Thread] INFO  r.application.AdministrationService - All trains
+29924 [JavaFX Application Thread] INFO  r.application.AdministrationService - All trains

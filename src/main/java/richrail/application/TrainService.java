@@ -5,6 +5,7 @@ import richrail.domain.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 
 
@@ -43,6 +44,11 @@ public class TrainService {
     public void duplicateTrain(Train train) throws CloneNotSupportedException{
         System.out.println("trein om te copy" + train);
         Train train1 = (Train)train.clone();
+        Random random = new Random();
+        for(TrainWagon wagon : train1.getTrainWagons()){
+            wagon.setTrain(train1);
+            wagon.setId(random.nextInt());
+        }
         train1.setId(UUID.randomUUID());
         System.out.println("trein copy" + train1);
         this.trainDao.save(train1);

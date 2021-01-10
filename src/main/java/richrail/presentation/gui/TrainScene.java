@@ -50,6 +50,7 @@ public class TrainScene {
         try {
             this.guiTrainService.copyTrain(trainList.getSelectionModel().getSelectedItem());
             messageText.setText("Train duplicated");
+            this.trainList.getItems().clear();
             this.guiTrainService.loadTrainList(this.trainList);
         }catch (Exception e){
             messageText.setText(e.getMessage());
